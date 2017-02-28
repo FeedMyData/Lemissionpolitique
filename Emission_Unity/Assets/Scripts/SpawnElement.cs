@@ -7,7 +7,7 @@ public class SpawnElement : MonoBehaviour {
 	public UnityEngine.UI.Text speechText;
 
 	private bool isInvincible = false;
-	private bool canBeHit = false;
+	private bool canBeCrushed = false;
 
 	private GameManager gm;
 
@@ -39,7 +39,7 @@ public class SpawnElement : MonoBehaviour {
 	}
 
 	void BeginSpeech() {
-		canBeHit = true;
+		canBeCrushed = true;
 	}
 
 	void MoveDown() {
@@ -51,10 +51,19 @@ public class SpawnElement : MonoBehaviour {
 	}
 
 	void Crush() {
-		canBeHit = false;
+		canBeCrushed = false;
 	}
 
 	void EndOfSpeech() {
-		canBeHit = false;
+		canBeCrushed = false;
+	}
+
+	public void ReceiveHit() {
+		if(isInvincible) {
+			// Feedback for invicible Hologram Molenchon
+		} else if (canBeCrushed) {
+			// Crush this one
+			gm.MolenchonCrushed();
+		}
 	}
 }

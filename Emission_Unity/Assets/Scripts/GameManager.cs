@@ -12,12 +12,24 @@ public class GameManager : MonoBehaviour {
 	public int maxMolenchonsToSpawnAtTheSameTime = 4;
 	[Range(0.0f, 1.0f)]
 	public float probabilityOfInvincibleMolenchon = 0.5f;
+	[Range(0.0f, 1.0f)]
+	public float beginningPopularity = 0.5f;
+
+	private float currentPopularity = 0.0f;
+	private int totalMolenchonCrushed = 0;
+//	private int totalHammerLaunched = 0;
 
 	public Spawner[] spawnPositions;
 
 	public GameObject MolenchonPrefab;
 
+	public GameObject HammerInteractionZone;
+
 	private bool isGameRunning = false;
+
+//	void Awake() {
+//		
+//	}
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +47,8 @@ public class GameManager : MonoBehaviour {
 		foreach(Spawner sp in spawnPositions) {
 			sp.Clean();
 		}
+		totalMolenchonCrushed = 0;
+		currentPopularity = beginningPopularity;
 		StopCoroutine(PlayingRoutine());
 
 		isGameRunning = true;
@@ -86,5 +100,13 @@ public class GameManager : MonoBehaviour {
 
 	public float GetTimer() {
 		return currentTimer;
+	}
+
+	public bool IsGameRunning() {
+		return isGameRunning;
+	}
+
+	public void MolenchonCrushed() {
+		totalMolenchonCrushed += 1;
 	}
 }
