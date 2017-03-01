@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour {
 	public int maxMolenchonsToSpawnAtTheSameTime = 4;
 	[Range(0.0f, 1.0f)]
 	public float probabilityOfInvincibleMolenchon = 0.5f;
+	public float timePerCharacterMolenchonSpeech = 0.05f;
 	[Range(0.0f, 1.0f)]
 	public float beginningPopularity = 0.5f;
 
 	private float currentPopularity = 0.0f;
 	private int totalMolenchonCrushed = 0;
+	private int totalMolenchonEndedSpeech = 0;
 //	private int totalHammerLaunched = 0;
 
 	public Spawner[] spawnPositions;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour {
 			sp.Clean();
 		}
 		totalMolenchonCrushed = 0;
+		totalMolenchonEndedSpeech = 0;
 		currentPopularity = beginningPopularity;
 		StopCoroutine(PlayingRoutine());
 
@@ -91,7 +94,7 @@ public class GameManager : MonoBehaviour {
 	List<Spawner> GetAvailableSpawners() {
 		List<Spawner> availableSpawners = new List<Spawner>();
 		foreach(Spawner sp in spawnPositions) {
-			if(!sp.hasActiveMolenchon) {
+			if(!sp.HasActiveMolenchon()) {
 				availableSpawners.Add(sp);
 			}
 		}
@@ -108,5 +111,9 @@ public class GameManager : MonoBehaviour {
 
 	public void MolenchonCrushed() {
 		totalMolenchonCrushed += 1;
+	}
+
+	public void MolenchonFinishedSpeech() {
+		totalMolenchonEndedSpeech += 1;
 	}
 }

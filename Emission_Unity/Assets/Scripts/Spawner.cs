@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-	[HideInInspector]
-	public bool hasActiveMolenchon = false;
+//	[HideInInspector]
+//	public bool hasActiveMolenchon = false;
 
 	private GameManager gm;
 
@@ -24,18 +24,26 @@ public class Spawner : MonoBehaviour {
 //	}
 
 	public void SpawnNew() {
-		Clean();
-		hasActiveMolenchon = true;
+//		Clean();
+//		hasActiveMolenchon = true;
 		GameObject molenchon = SimplePool.Spawn(gm.MolenchonPrefab);
 		molenchon.transform.SetParent(transform);
 		molenchon.GetComponent<SpawnElement>().InitMolenchon();
 	}
 
 	public void Clean() {
-		hasActiveMolenchon = false;
+//		hasActiveMolenchon = false;
 		foreach(GameObject obj in transform) {
 			//Despawn
 			SimplePool.Despawn(obj);
+		}
+	}
+
+	public bool HasActiveMolenchon() {
+		if(transform.GetComponentInChildren<SpawnElement>() != null && transform.GetComponentInChildren<SpawnElement>().gameObject.activeSelf) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

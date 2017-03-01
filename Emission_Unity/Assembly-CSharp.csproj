@@ -48,10 +48,13 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Hammer.cs" />
+     <Compile Include="Assets\Scripts\HammerUser.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\SimplePool.cs" />
      <Compile Include="Assets\Scripts\SpawnElement.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
+     <Compile Include="Assets\Scripts\SpeechBubble.cs" />
+     <Compile Include="Assets\Scripts\SpeechList.cs" />
      <None Include="Assets\DOTween\DOTween43.xml" />
      <None Include="Assets\DOTween\readme.txt" />
      <None Include="Assets\DOTween\DOTween50.xml" />
