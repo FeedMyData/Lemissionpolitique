@@ -6,22 +6,27 @@ using DG.Tweening;
 public class SpawnElement : MonoBehaviour {
 
 	public SpeechBubble speechBubble;
-
-	public SpeechList speechList;
+	private SpeechList speechList;
 
 	private bool isInvincible = false;
 	private bool canBeCrushed = false;
 
 	private Color baseMeshColor;
 	private Color baseBubbleBgColor;
+	private MeshRenderer molenchonMesh;
+
+	private Sequence beginSpeechSeq;
 
 	private GameManager gm;
 
 	void Awake() {
 		gm = FindObjectOfType<GameManager>();
+		speechList = gm.molenchonSpeechList;
 		speechBubble.gameObject.SetActive(false);
-		baseMeshColor = GetComponent<MeshRenderer>().material.color;
+		molenchonMesh = GetComponentInChildren<MeshRenderer>();
+		baseMeshColor = molenchonMesh.material.color;
 		baseBubbleBgColor = speechBubble.background.color;
+		beginSpeechSeq.SetAutoKill(false);
 	}
 
 	// Use this for initialization
@@ -46,7 +51,7 @@ public class SpawnElement : MonoBehaviour {
 		speechBubble.background.color = baseBubbleBgColor;
 		speechBubble.gameObject.SetActive(false);
 		transform.localScale = new Vector3(1, 1, 1);
-		GetComponent<MeshRenderer>().material.color = baseMeshColor;
+		molenchonMesh.material.color = baseMeshColor;
 		MoveUp();
 	}
 
@@ -56,10 +61,12 @@ public class SpawnElement : MonoBehaviour {
 
 	void BeginSpeech() {
 		canBeCrushed = true;
-		speechBubble.gameObject.SetActive(true);
-		SpeechElement speech = ChooseSpeech();
+		SpeechElement speech = speechList.ChooseSpeech();
 		if(speech != null) {
-			speechBubble.speechText.DOText(speech.text, gm.timePerCharacterMolenchonSpeech * speech.text.Length).OnComplete(()=>EndOfSpeech()).Play();
+			speechBubble.gameObject.SetActive(true);
+			beginSpeechSeq = DOTween.Sequence();
+			beginSpeechSeq.Append(speechBubble.speechText.DOText(speech.text, gm.timePerCharacterMolenchonSpeech * speech.text.Length));
+			beginSpeechSeq.OnComplete(()=>EndOfSpeech()).Play();
 		}
 	}
 
@@ -72,13 +79,6 @@ public class SpawnElement : MonoBehaviour {
 		endSeq.AppendCallback(()=>MoveDown()).Play();
 	}
 
-	SpeechElement ChooseSpeech() {
-		if(speechList.SpeechArray.Length > 0) {
-			return speechList.SpeechArray[Random.Range(0, speechList.SpeechArray.Length - 1)];
-		}
-		return null;
-	}
-
 	void MoveDown() {
 		transform.DOLocalMoveY(0, 0.5f).OnComplete(()=>Despawn()).Play();
 	}
@@ -89,14 +89,16 @@ public class SpawnElement : MonoBehaviour {
 
 	void Crush() {
 		canBeCrushed = false;
+		if(beginSpeechSeq != null && beginSpeechSeq.IsPlaying()) {
+			beginSpeechSeq.Pause();
+		}
 		Sequence crushSeq = DOTween.Sequence();
 		crushSeq.Append(transform.DOScaleY(0.2f, 0.5f));
 		crushSeq.Join(transform.DOScaleX(1.6f, 0.5f));
 		crushSeq.Join(transform.DOScaleZ(1.6f, 0.5f));
 		crushSeq.Append(speechBubble.background.DOColor(Color.red, 0.5f));
-		crushSeq.Append(GetComponent<MeshRenderer>().material.DOFade(0, 1.0f));
+		crushSeq.Append(molenchonMesh.material.DOFade(0, 1.0f));
 		crushSeq.AppendCallback(()=>Despawn()).Play();
-
 	}
 
 	public void ReceiveHit() {
@@ -111,9 +113,9 @@ public class SpawnElement : MonoBehaviour {
 	}
 
 	void ShowHologram() {
-		Color newColor = GetComponent<MeshRenderer>().material.color;
-		newColor.a = 0.5f;
-		GetComponent<MeshRenderer>().material.color = newColor;
+		Color newColor = molenchonMesh.material.color;
+		newColor.a = 0.8f;
+		molenchonMesh.material.color = newColor;
 		Debug.Log("Can't stenchon the Melenchon !");
 	}
 }

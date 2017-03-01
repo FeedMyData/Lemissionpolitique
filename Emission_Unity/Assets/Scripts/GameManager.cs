@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	[Range(0.0f, 1.0f)]
 	public float beginningPopularity = 0.5f;
 
+	public SpeechList molenchonSpeechList;
+
 	private float currentPopularity = 0.0f;
 	private int totalMolenchonCrushed = 0;
 	private int totalMolenchonEndedSpeech = 0;
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		StartNewGame();
+		StartNewGame();
 	}
 	
 	// Update is called once per frame
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour {
 		foreach(Spawner sp in spawnPositions) {
 			sp.Clean();
 		}
+		currentTimer = gameSecondsDuration;
 		totalMolenchonCrushed = 0;
 		totalMolenchonEndedSpeech = 0;
 		currentPopularity = beginningPopularity;

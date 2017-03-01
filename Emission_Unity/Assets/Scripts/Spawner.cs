@@ -33,9 +33,9 @@ public class Spawner : MonoBehaviour {
 
 	public void Clean() {
 //		hasActiveMolenchon = false;
-		foreach(GameObject obj in transform) {
+		foreach(Transform obj in transform) {
 			//Despawn
-			SimplePool.Despawn(obj);
+			SimplePool.Despawn(obj.gameObject);
 		}
 	}
 

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Hammer : MonoBehaviour {
 
-	public Transform hammerRestZone;
+	private Vector3 hammerRestPosition;
 	public GameObject baseHammerToUse;
 	public Transform usersContainer;
 	public SpeechBubble speechBubble;
@@ -13,16 +13,20 @@ public class Hammer : MonoBehaviour {
 	public float timeToGoToPosition = 0.2f;
 	public float timeToGoToRest = 0.2f;
 
-	private GameManager gm;
+	public Vector3 inputPositionOffset;
+
+//	private GameManager gm;
 	private HammerUser[] hammerUsers;
 	private HammerUser specificCurrentUser;
 
 	private bool readyToCrushAgain = true;
 
 	void Awake() {
-		gm = FindObjectOfType<GameManager>();
+//		gm = FindObjectOfType<GameManager>();
 		hammerUsers = usersContainer.GetComponentsInChildren<HammerUser>();
 		speechBubble.gameObject.SetActive(false);
+		EnableDisableCollider(false);
+		hammerRestPosition = transform.position;
 	}
 
 	// Use this for initialization
@@ -43,12 +47,22 @@ public class Hammer : MonoBehaviour {
 
 	void GoToCrushPosition(Vector3 pos) {
 		readyToCrushAgain = false;
+		AssignSpecificUser();
+		DisplaySpeech();
+		DisplaySpecificHammer();
+		pos += inputPositionOffset;
 		transform.DOMove(pos, 0.5f).OnComplete(()=>DoCrush()).Play();
 	}
 
 	void BackToRest() {
 		// At the end, readyToCrushAgain is true
-		transform.DOMove(hammerRestZone.position, 0.5f).OnComplete(()=>readyToCrushAgain = true).Play();
+		transform.DOMove(hammerRestPosition, 0.5f).OnComplete(()=>ArriveAtRest()).Play();
+	}
+
+	void ArriveAtRest() {
+		RemoveSpeech();
+		DisplayBaseHammer();
+		readyToCrushAgain = true;
 	}
 
 	void DoCrush() {
@@ -67,13 +81,26 @@ public class Hammer : MonoBehaviour {
 			otherCollider.GetComponent<SpawnElement>().ReceiveHit();
 		}
 	}
-		
+
 	void EnableDisableCollider(bool active) {
 		GetComponent<BoxCollider>().enabled = active;
 	}
 
 	void AssignSpecificUser() {
 		specificCurrentUser = ChooseUser();
+	}
+
+	void DisplaySpeech() {
+		if(specificCurrentUser != null) {
+			SpeechElement speech = specificCurrentUser.speechList.ChooseSpeech();
+			speechBubble.speechText.text = speech.text;
+			speechBubble.profilePicture.sprite = specificCurrentUser.profilePicture;
+			speechBubble.gameObject.SetActive(true);
+		}
+	}
+
+	void RemoveSpeech() {
+		speechBubble.gameObject.SetActive(false);
 	}
 
 	void DisplaySpecificHammer() {
