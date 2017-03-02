@@ -14,7 +14,7 @@ public class SpeechList : MonoBehaviour {
 
 	public SpeechElement ChooseSpeech() {
 		if(SpeechArray.Length > 0) {
-			return SpeechArray[Random.Range(0, SpeechArray.Length - 1)];
+			return SpeechArray[Random.Range(0, SpeechArray.Length)];
 		}
 		return null;
 	}

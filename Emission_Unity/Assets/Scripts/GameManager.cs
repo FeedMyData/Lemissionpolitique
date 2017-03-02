@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
 	public float timePerCharacterMolenchonSpeech = 0.05f;
 	[Range(0.0f, 1.0f)]
 	public float beginningPopularity = 0.5f;
+	[Range(0.0f, 1.0f)]
+	public float baseStepChangingPopularity = 0.05f;
+	public PopularityFeedback popularityScript;
 
 	public SpeechList molenchonSpeechList;
 
@@ -48,20 +52,20 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void StartNewGame() {
-		foreach(Spawner sp in spawnPositions) {
-			sp.Clean();
-		}
 		currentTimer = gameSecondsDuration;
 		totalMolenchonCrushed = 0;
 		totalMolenchonEndedSpeech = 0;
 		currentPopularity = beginningPopularity;
-		StopCoroutine(PlayingRoutine());
+		popularityScript.UpdateText(currentPopularity);
+		InitialCountdown();
+	}
 
-		isGameRunning = true;
+	void InitialCountdown() {
 		StartCoroutine(PlayingRoutine());
 	}
 
 	IEnumerator PlayingRoutine() {
+		isGameRunning = true;
 		while(isGameRunning) {
 			float timeToWait = Random.Range(minTimeNewSpawn, maxTimeNewSpawn);
 			yield return new WaitForSeconds(timeToWait);
@@ -79,10 +83,18 @@ public class GameManager : MonoBehaviour {
 
 	void EndGame() {
 		isGameRunning = false;
+		ClearCurrentGameRunning();
+	}
+
+	void ClearCurrentGameRunning() {
+		StopCoroutine(PlayingRoutine());
+		foreach(Spawner sp in spawnPositions) {
+			sp.Clean();
+		}
 	}
 
 	void SpawnMolenchons() {
-		int molenchonsToSpawn = Random.Range(minMolenchonsToSpawnAtTheSameTime, maxMolenchonsToSpawnAtTheSameTime);
+		int molenchonsToSpawn = Random.Range(minMolenchonsToSpawnAtTheSameTime, maxMolenchonsToSpawnAtTheSameTime + 1);
 		for(int i = 0; i <= molenchonsToSpawn; i++) {
 			List<Spawner> availableSpawners = GetAvailableSpawners();
 			if(availableSpawners.Count > 0) {
@@ -114,9 +126,18 @@ public class GameManager : MonoBehaviour {
 
 	public void MolenchonCrushed() {
 		totalMolenchonCrushed += 1;
+		UpdatePopularity();
 	}
 
 	public void MolenchonFinishedSpeech() {
 		totalMolenchonEndedSpeech += 1;
+		UpdatePopularity();
+	}
+
+	void UpdatePopularity() {
+		float lifeTimePercentage = baseStepChangingPopularity * (totalMolenchonEndedSpeech - totalMolenchonCrushed) + beginningPopularity;
+		lifeTimePercentage = Mathf.Clamp01(lifeTimePercentage);
+		currentPopularity = DOVirtual.EasedValue(0, 1, lifeTimePercentage, Ease.InOutCirc);
+		popularityScript.AnimChangePopularity(currentPopularity);
 	}
 }

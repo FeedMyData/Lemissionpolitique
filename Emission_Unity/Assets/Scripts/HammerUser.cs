@@ -18,4 +18,8 @@ public class HammerUser : MonoBehaviour {
 //	void Update () {
 //		
 //	}
+
+	public void SpeakAnimation() {
+		
+	}
 }

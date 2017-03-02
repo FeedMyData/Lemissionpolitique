@@ -8,23 +8,29 @@ public class Hammer : MonoBehaviour {
 	private Vector3 hammerRestPosition;
 	public GameObject baseHammerToUse;
 	public Transform usersContainer;
-	public SpeechBubble speechBubble;
+	public Transform userBubblesContainer;
+	public GameObject prefabUserSpeechBubble;
 
-	public float timeToGoToPosition = 0.2f;
-	public float timeToGoToRest = 0.2f;
+	public float timeToGoToPosition = 0.1f;
+	public float timeToGoToRest = 0.1f;
+	public float timeToCrushMoveDown = 0.05f;
+	public float timeToCrushMoveUp = 0.05f;
 
 	public Vector3 inputPositionOffset;
+	public Vector3 userBubbleOffset;
 
 //	private GameManager gm;
 	private HammerUser[] hammerUsers;
 	private HammerUser specificCurrentUser;
+
+	private Sequence backToRestSeq;
 
 	private bool readyToCrushAgain = true;
 
 	void Awake() {
 //		gm = FindObjectOfType<GameManager>();
 		hammerUsers = usersContainer.GetComponentsInChildren<HammerUser>();
-		speechBubble.gameObject.SetActive(false);
+//		speechBubble.gameObject.SetActive(false);
 		EnableDisableCollider(false);
 		hammerRestPosition = transform.position;
 	}
@@ -46,34 +52,47 @@ public class Hammer : MonoBehaviour {
 	}
 
 	void GoToCrushPosition(Vector3 pos) {
+		if(backToRestSeq != null && backToRestSeq.IsPlaying()) {
+			backToRestSeq.Kill();
+		}
 		readyToCrushAgain = false;
 		AssignSpecificUser();
-		DisplaySpeech();
 		DisplaySpecificHammer();
+		AnimateSpecificUser();
 		pos += inputPositionOffset;
-		transform.DOMove(pos, 0.5f).OnComplete(()=>DoCrush()).Play();
+		transform.DOMove(pos, timeToGoToPosition).OnComplete(()=>DoCrush()).Play();
 	}
 
 	void BackToRest() {
-		// At the end, readyToCrushAgain is true
-		transform.DOMove(hammerRestPosition, 0.5f).OnComplete(()=>ArriveAtRest()).Play();
+		backToRestSeq = DOTween.Sequence();
+		backToRestSeq.Append(transform.DOMove(hammerRestPosition, timeToGoToRest));
+		backToRestSeq.AppendCallback(()=>ArriveAtRest());
+		backToRestSeq.Play();
 	}
 
 	void ArriveAtRest() {
-		RemoveSpeech();
 		DisplayBaseHammer();
-		readyToCrushAgain = true;
 	}
 
 	void DoCrush() {
-		// Still need asign user, speech and specific hammer
 		Sequence doCrush = DOTween.Sequence();
-		doCrush.Append(transform.DOLocalMoveY(-1.0f, 0.2f).SetRelative());
+		doCrush.AppendCallback(()=>SpawnSpeechBubble());
+		doCrush.Append(transform.DOLocalMoveY(-1.0f, timeToCrushMoveDown).SetRelative());
 		doCrush.InsertCallback(0,()=>EnableDisableCollider(true));
 		doCrush.AppendCallback(()=>EnableDisableCollider(false));
-		doCrush.Append(transform.DOLocalMoveY(1.0f, 0.2f).SetRelative());
+		doCrush.Append(transform.DOLocalMoveY(1.0f, timeToCrushMoveUp).SetRelative());
 		doCrush.AppendCallback(()=>BackToRest());
 		doCrush.Play();
+		readyToCrushAgain = true;
+	}
+
+	void SpawnSpeechBubble() {
+		if(specificCurrentUser != null) {
+			GameObject userBubble = SimplePool.Spawn(prefabUserSpeechBubble);
+			userBubble.transform.SetParent(userBubblesContainer);
+			userBubble.transform.position = transform.position + userBubbleOffset;
+			userBubble.GetComponent<UserSpeechBubble>().InitUserBubble(specificCurrentUser);
+		}
 	}
 
 	void OnTriggerEnter(Collider otherCollider) {
@@ -90,17 +109,10 @@ public class Hammer : MonoBehaviour {
 		specificCurrentUser = ChooseUser();
 	}
 
-	void DisplaySpeech() {
+	void AnimateSpecificUser() {
 		if(specificCurrentUser != null) {
-			SpeechElement speech = specificCurrentUser.speechList.ChooseSpeech();
-			speechBubble.speechText.text = speech.text;
-			speechBubble.profilePicture.sprite = specificCurrentUser.profilePicture;
-			speechBubble.gameObject.SetActive(true);
+			specificCurrentUser.SpeakAnimation();
 		}
-	}
-
-	void RemoveSpeech() {
-		speechBubble.gameObject.SetActive(false);
 	}
 
 	void DisplaySpecificHammer() {
@@ -126,7 +138,7 @@ public class Hammer : MonoBehaviour {
 		List<HammerUser> listForProbability = MakeProbabilityList();
 		HammerUser userChosen = null;
 		if(listForProbability.Count > 0) {
-			userChosen = listForProbability[Random.Range(0, listForProbability.Count - 1)];
+			userChosen = listForProbability[Random.Range(0, listForProbability.Count)];
 		}
 		return userChosen;
 	}
