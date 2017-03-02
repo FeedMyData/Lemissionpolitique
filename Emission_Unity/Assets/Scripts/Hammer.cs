@@ -19,7 +19,7 @@ public class Hammer : MonoBehaviour {
 	public Vector3 inputPositionOffset;
 	public Vector3 userBubbleOffset;
 
-//	private GameManager gm;
+	private GameManager gm;
 	private HammerUser[] hammerUsers;
 	private HammerUser specificCurrentUser;
 
@@ -28,7 +28,7 @@ public class Hammer : MonoBehaviour {
 	private bool readyToCrushAgain = true;
 
 	void Awake() {
-//		gm = FindObjectOfType<GameManager>();
+		gm = FindObjectOfType<GameManager>();
 		hammerUsers = usersContainer.GetComponentsInChildren<HammerUser>();
 //		speechBubble.gameObject.SetActive(false);
 		EnableDisableCollider(false);
@@ -83,6 +83,7 @@ public class Hammer : MonoBehaviour {
 		doCrush.Append(transform.DOLocalMoveY(1.0f, timeToCrushMoveUp).SetRelative());
 		doCrush.AppendCallback(()=>BackToRest());
 		doCrush.Play();
+		gm.HammerHasCrushed();
 		readyToCrushAgain = true;
 	}
 

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 	private float currentPopularity = 0.0f;
 	private int totalMolenchonCrushed = 0;
 	private int totalMolenchonEndedSpeech = 0;
-//	private int totalHammerLaunched = 0;
+	private int totalHammerCrushes = 0;
 
 	public Spawner[] spawnPositions;
 
@@ -35,14 +35,16 @@ public class GameManager : MonoBehaviour {
 
 	private bool isGameRunning = false;
 
-//	void Awake() {
-//		
-//	}
+	private PanelMenuManager pmm;
+
+	void Awake() {
+		pmm = FindObjectOfType<PanelMenuManager>();
+	}
 
 	// Use this for initialization
-	void Start () {
-		StartNewGame();
-	}
+//	void Start () {
+//		
+//	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -51,12 +53,16 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void StartNewGame() {
+	public void StartNewGame() {
+		ClearCurrentGameRunning();
+
 		currentTimer = gameSecondsDuration;
 		totalMolenchonCrushed = 0;
 		totalMolenchonEndedSpeech = 0;
+		totalHammerCrushes = 0;
 		currentPopularity = beginningPopularity;
 		popularityScript.UpdateText(currentPopularity);
+		pmm.RemoveAllPanels();
 		InitialCountdown();
 	}
 
@@ -75,19 +81,20 @@ public class GameManager : MonoBehaviour {
 
 	void UpdateTimer() {
 		if(currentTimer <= 0.0f) {
-			EndGame();
+			StartCoroutine(EndGame());
 		} else {
 			currentTimer -= Time.deltaTime;
 		}
 	}
 
-	void EndGame() {
+	IEnumerator EndGame() {
 		isGameRunning = false;
-		ClearCurrentGameRunning();
+		StopCoroutine(PlayingRoutine());
+		yield return new WaitForSeconds(1.0f);
+		pmm.ShowEndGamePanels();
 	}
 
 	void ClearCurrentGameRunning() {
-		StopCoroutine(PlayingRoutine());
 		foreach(Spawner sp in spawnPositions) {
 			sp.Clean();
 		}
@@ -125,13 +132,23 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void MolenchonCrushed() {
-		totalMolenchonCrushed += 1;
-		UpdatePopularity();
+		if(isGameRunning) {
+			totalMolenchonCrushed += 1;
+			UpdatePopularity();
+		}
 	}
 
 	public void MolenchonFinishedSpeech() {
-		totalMolenchonEndedSpeech += 1;
-		UpdatePopularity();
+		if(isGameRunning) {
+			totalMolenchonEndedSpeech += 1;
+			UpdatePopularity();
+		}
+	}
+
+	public void HammerHasCrushed() {
+		if(isGameRunning) {
+			totalHammerCrushes += 1;
+		}
 	}
 
 	void UpdatePopularity() {

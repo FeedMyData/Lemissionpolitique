@@ -121,7 +121,7 @@ public class SpawnElement : MonoBehaviour {
 			beginSpeechSeq.Pause();
 
 			Sequence stenchonSeq = DOTween.Sequence();
-			stenchonSeq.Append(speechBubble.speechText.DOText("Can't stenchon the Melenchon !", 0.2f));
+			stenchonSeq.Append(speechBubble.speechText.DOText("Can't stenchon the Mélenchon !", 0.2f));
 			stenchonSeq.AppendInterval(0.8f);
 			stenchonSeq.OnComplete(()=>ResumeSpeechAtPosition(beginSpeechSeq.Elapsed() + stenchonSeq.Duration()));
 			stenchonSeq.Play();

@@ -19,9 +19,9 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		if(gm.IsGameRunning()) {
+		if(gm.IsGameRunning()) {
 			CheckTouchOrMouseInteraction();
-//		}
+		}
 	}
 
 	void CheckTouchOrMouseInteraction() {

@@ -24,18 +24,14 @@ public class Spawner : MonoBehaviour {
 //	}
 
 	public void SpawnNew() {
-//		Clean();
-//		hasActiveMolenchon = true;
 		GameObject molenchon = SimplePool.Spawn(gm.MolenchonPrefab);
 		molenchon.transform.SetParent(transform);
 		molenchon.GetComponent<SpawnElement>().InitMolenchon();
 	}
 
 	public void Clean() {
-//		hasActiveMolenchon = false;
-		foreach(Transform obj in transform) {
-			//Despawn
-			SimplePool.Despawn(obj.gameObject);
+		foreach(Transform tr in transform) {
+			SimplePool.Despawn(tr.gameObject);
 		}
 	}
 

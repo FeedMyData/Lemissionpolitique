@@ -50,13 +50,16 @@
      <Compile Include="Assets\Scripts\Hammer.cs" />
      <Compile Include="Assets\Scripts\HammerUser.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
+     <Compile Include="Assets\Scripts\MenuPanel.cs" />
+     <Compile Include="Assets\Scripts\PanelMenuManager.cs" />
      <Compile Include="Assets\Scripts\PopularityFeedback.cs" />
+     <Compile Include="Assets\Scripts\ScoreInfo.cs" />
      <Compile Include="Assets\Scripts\SimplePool.cs" />
      <Compile Include="Assets\Scripts\SpawnElement.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\SpeechBubble.cs" />
      <Compile Include="Assets\Scripts\SpeechList.cs" />
-     <Compile Include="Assets\UserSpeechBubble.cs" />
+     <Compile Include="Assets\Scripts\UserSpeechBubble.cs" />
      <None Include="Assets\DOTween\DOTween43.xml" />
      <None Include="Assets\DOTween\readme.txt" />
      <None Include="Assets\DOTween\DOTween50.xml" />
