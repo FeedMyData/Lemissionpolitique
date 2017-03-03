@@ -2,31 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class MenuPanel : MonoBehaviour {
 
-	public Vector2 DeactivatedRelativePosition;
-	private Vector2 DeactivatedPosition;
-	private Vector2 ActivatedPosition;
+	public Vector3 DeactivatedScale;
+//	private Vector2 DeactivatedPosition;
+	private Vector3 ActivatedScale;
 	private Sequence ActivatingSequence;
 	private Sequence DeactivatingSequence;
 	private bool panelOn = true;
+	private CanvasGroup content;
+
+	public UnityEvent StartIntroEvent = new UnityEvent();
+	public UnityEvent EndIntroEvent = new UnityEvent();
+	public UnityEvent StartOutroEvent = new UnityEvent();
+	public UnityEvent EndOutroEvent = new UnityEvent();
+
 
 	void Awake() {
-		ActivatedPosition = GetComponent<RectTransform>().anchoredPosition;
-		DeactivatedPosition = GetComponent<RectTransform>().anchoredPosition + DeactivatedRelativePosition;
+		content = GetComponentInChildren<CanvasGroup>();
+
+		ActivatedScale = GetComponent<RectTransform>().localScale;
+//		DeactivatedPosition = GetComponent<RectTransform>().anchoredPosition + DeactivatedRelativePosition;
 
 		DeactivatingSequence = DOTween.Sequence();
-		DeactivatingSequence.Append(GetComponent<RectTransform>().DOAnchorPos(DeactivatedPosition, 0.5f));
+		DeactivatingSequence.AppendCallback(()=>StartOutroEvent.Invoke());
+		DeactivatingSequence.AppendCallback(()=>ActivateContent(false));
+		DeactivatingSequence.Append(content.DOFade(0, 0.3f));
+		DeactivatingSequence.Append(GetComponent<RectTransform>().DOScale(DeactivatedScale, 0.3f));
 		DeactivatingSequence.AppendCallback(()=>gameObject.SetActive(false));
+		DeactivatingSequence.AppendCallback(()=>EndOutroEvent.Invoke());
 		DeactivatingSequence.SetAutoKill(false);
 
 		ActivatingSequence = DOTween.Sequence();
+		ActivatingSequence.AppendCallback(()=>StartIntroEvent.Invoke());
 		ActivatingSequence.AppendCallback(()=>gameObject.SetActive(true));
-		ActivatingSequence.Append(GetComponent<RectTransform>().DOAnchorPos(ActivatedPosition, 0.5f));
+		ActivatingSequence.Append(GetComponent<RectTransform>().DOScale(ActivatedScale, 0.3f));
+		ActivatingSequence.AppendCallback(()=>ActivateContent(true));
+		ActivatingSequence.Append(content.DOFade(1, 0.3f));
+		ActivatingSequence.AppendCallback(()=>EndIntroEvent.Invoke());
 		ActivatingSequence.SetAutoKill(false);
 
-		GetComponent<RectTransform>().anchoredPosition = DeactivatedPosition;
+		GetComponent<RectTransform>().localScale = DeactivatedScale;
+		content.alpha = 0;
+		content.interactable = false;
 		panelOn = false;
 	}
 
@@ -34,14 +54,18 @@ public class MenuPanel : MonoBehaviour {
 	void Start () {
 		gameObject.SetActive(false);
 	}
-	
+
 	// Update is called once per frame
 //	void Update () {
 //		
 //	}
 
+	void ActivateContent(bool active) {
+		content.interactable = active;
+	}
+
 	public void ActivatePanel() {
-		if(!ActivatingSequence.IsPlaying() && GetComponent<RectTransform>().anchoredPosition != ActivatedPosition) {
+		if(!ActivatingSequence.IsPlaying() && GetComponent<RectTransform>().localScale != ActivatedScale) {
 			panelOn = true;
 			if(DeactivatingSequence.IsPlaying()) {
 				DeactivatingSequence.PlayBackwards();
@@ -52,7 +76,7 @@ public class MenuPanel : MonoBehaviour {
 	}
 
 	public void DeactivatePanel() {
-		if(!DeactivatingSequence.IsPlaying() && GetComponent<RectTransform>().anchoredPosition != DeactivatedPosition) {
+		if(!DeactivatingSequence.IsPlaying() && GetComponent<RectTransform>().localScale != DeactivatedScale) {
 			panelOn = false;
 			if(ActivatingSequence.IsPlaying()) {
 				ActivatingSequence.PlayBackwards();

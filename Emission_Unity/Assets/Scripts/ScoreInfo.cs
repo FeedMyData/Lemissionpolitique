@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class CommentElement {
+	public float includeMinPop;
+	public float excludeMaxPop;
+	public string text;
+}
+
 public class ScoreInfo : MonoBehaviour {
 
 	public Text popularityText;
-	public Text molenchonCrushed;
-	public Text molenchonFinished;
-	public Text totalHammer;
+	public Text commentText;
+
+	public CommentElement[] commentArray;
 
 	private GameManager gm;
 
@@ -27,11 +34,16 @@ public class ScoreInfo : MonoBehaviour {
 //	}
 
 	public void UpdatePanelScoreText() {
-//		int pop = (int)(gm.currentPopularity * 100);
-//		popularityText.text = string.Format("{0}%", pop);
-//		molenchonCrushed.text = gm.totalMolenchonCrushed.ToString();
-//		molenchonFinished.text = gm.totalMolenchonEndedSpeech.ToString();
-//		totalHammer.text = gm.totalHammerCrushes.ToString();
+		int pop = (int)(gm.currentPopularity * 100);
+		popularityText.text = string.Format("{0}%", pop);
+		string chosenCommentText = "Can't stenchon the Mélenchon !";
+		foreach(CommentElement el in commentArray) {
+			if(gm.currentPopularity >= el.includeMinPop && gm.currentPopularity < el.excludeMaxPop) {
+				chosenCommentText = el.text;
+				break;
+			}
+		}
+		commentText.text = chosenCommentText;
 	}
 
 }

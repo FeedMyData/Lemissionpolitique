@@ -8,6 +8,15 @@ public class PanelMenuManager : MonoBehaviour {
 	public MenuPanel infoPanel;
 	public MenuPanel scorePanel;
 
+	private bool IsStartMenu = false;
+	private bool IsActionToPlay = false;
+
+	private GameManager gm;
+
+	void Awake() {
+		gm = FindObjectOfType<GameManager>();
+	}
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(DelayedStart());
@@ -20,19 +29,40 @@ public class PanelMenuManager : MonoBehaviour {
 
 	IEnumerator DelayedStart() {
 		yield return new WaitForSeconds(0.5f);
+		IsStartMenu = true;
 		playPanel.ActivatePanel();
 	}
 
 	public void ShowEndGamePanels() {
-//		scorePanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
-		playPanel.ActivatePanel();
+		IsStartMenu = false;
+		if(scorePanel.GetComponent<ScoreInfo>() != null) {
+			scorePanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
+		}
 		scorePanel.ActivatePanel();
 	}
 
-	public void RemoveAllPanels() {
-		playPanel.DeactivatePanel();
-		infoPanel.DeactivatePanel();
-//		scorePanel.DeactivatePanel();
+	public void CheckBinaryMenu() {
+		if(IsStartMenu) {
+			playPanel.ActivatePanel();
+		} else {
+			scorePanel.ActivatePanel();
+		}
+	}
+
+	public void SetActionToPlay() {
+		IsActionToPlay = true;
+	}
+
+	public void SetActionToInfo() {
+		IsActionToPlay = false;
+	}
+
+	public void CheckBinaryAction() {
+		if(IsActionToPlay) {
+			gm.StartNewGame();
+		} else {
+			infoPanel.ActivatePanel();
+		}
 	}
 
 }

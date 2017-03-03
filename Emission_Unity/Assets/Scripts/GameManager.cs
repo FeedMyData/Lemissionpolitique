@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour {
 	public int totalMolenchonCrushed = 0;
 	[HideInInspector]
 	public int totalMolenchonEndedSpeech = 0;
-	[HideInInspector]
-	public int totalHammerCrushes = 0;
+//	[HideInInspector]
+//	public int totalHammerCrushes = 0;
 
 	public Spawner[] spawnPositions;
 
@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour {
 	private Texture baseWallTexture;
 	private Coroutine changingTexCoroutine;
 
+	public UnityEngine.UI.Text textTimer;
+
+	public UnityEngine.CanvasGroup canvasInGame;
+
 	void Awake() {
 		pmm = FindObjectOfType<PanelMenuManager>();
 		if(wallWithTexture != null) {
@@ -55,8 +59,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	// Use this for initialization
-//	void Start () {
-//	}
+	void Start () {
+		canvasInGame.gameObject.SetActive(false);
+		canvasInGame.alpha = 0;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -91,21 +97,35 @@ public class GameManager : MonoBehaviour {
 		ClearCurrentGameRunning();
 
 		currentTimer = gameSecondsDuration;
+		UpdateTextTimer();
 		totalMolenchonCrushed = 0;
 		totalMolenchonEndedSpeech = 0;
-		totalHammerCrushes = 0;
+//		totalHammerCrushes = 0;
 		currentPopularity = beginningPopularity;
-		popularityScript.UpdateText(currentPopularity);
-		pmm.RemoveAllPanels();
-		InitialCountdown();
+		popularityScript.AnimChangePopularity(currentPopularity);
+		ShowPlayingCanvas();
 	}
 
-	void InitialCountdown() {
+	void LaunchPlayingRoutine() {
 		playingCoroutine = StartCoroutine(PlayingRoutine());
 	}
 
+	void ShowPlayingCanvas() {
+		canvasInGame.gameObject.SetActive(true);
+		canvasInGame.alpha = 0;
+		canvasInGame.DOFade(1, 2.0f).OnComplete(()=>LaunchPlayingRoutine()).Play();
+	}
+
+	void HidePlayingCanvas() {
+		Sequence hideSeq = DOTween.Sequence();
+		hideSeq.Append(canvasInGame.DOFade(0, 2.0f));
+		hideSeq.AppendCallback(()=>canvasInGame.gameObject.SetActive(false));
+		hideSeq.AppendCallback(()=>pmm.ShowEndGamePanels());
+		hideSeq.Play();
+	}
+
 	IEnumerator PlayingRoutine() {
-		yield return new WaitForSeconds(1.0f);
+//		yield return new WaitForSeconds(1.0f);
 		isGameRunning = true;
 		while(isGameRunning) {
 			SpawnMolenchons();
@@ -116,19 +136,20 @@ public class GameManager : MonoBehaviour {
 
 	void UpdateTimer() {
 		if(currentTimer <= 0.0f) {
-			StartCoroutine(EndGame());
+//			StartCoroutine(EndGame());
+			EndGame();
 		} else {
 			currentTimer -= Time.deltaTime;
 		}
+		UpdateTextTimer();
 	}
 
-	IEnumerator EndGame() {
+	void EndGame() {
 		isGameRunning = false;
 		if(playingCoroutine != null) {
 			StopCoroutine(playingCoroutine);
 		}
-		yield return new WaitForSeconds(1.0f);
-		pmm.ShowEndGamePanels();
+		HidePlayingCanvas();
 	}
 
 	void ClearCurrentGameRunning() {
@@ -178,16 +199,20 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void HammerHasCrushed() {
-		if(isGameRunning) {
-			totalHammerCrushes += 1;
-		}
-	}
+//	public void HammerHasCrushed() {
+//		if(isGameRunning) {
+//			totalHammerCrushes += 1;
+//		}
+//	}
 
 	void UpdatePopularity() {
 		float lifeTimePercentage = baseStepChangingPopularity * (totalMolenchonEndedSpeech - totalMolenchonCrushed) + beginningPopularity;
 		lifeTimePercentage = Mathf.Clamp01(lifeTimePercentage);
 		currentPopularity = DOVirtual.EasedValue(0, 1, lifeTimePercentage, Ease.InOutCirc);
 		popularityScript.AnimChangePopularity(currentPopularity);
+	}
+
+	void UpdateTextTimer() {
+		textTimer.text = string.Format("{0:00.0}", currentTimer);
 	}
 }
