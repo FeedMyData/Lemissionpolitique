@@ -37,19 +37,35 @@ public class GameManager : MonoBehaviour {
 
 	private PanelMenuManager pmm;
 
+	public MeshRenderer WallTexture;
+	public Texture[] Textures;
+
+
+
 	void Awake() {
 		pmm = FindObjectOfType<PanelMenuManager>();
 	}
 
 	// Use this for initialization
-//	void Start () {
-//		
-//	}
+	void Start () {
+		StartCoroutine (WallChangeTexture());
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(isGameRunning) {
 			UpdateTimer();
+
+		}
+	}
+
+	//Texture CHANGE
+
+	IEnumerator WallChangeTexture() {
+		while (true) {
+			yield return new WaitForSeconds (0.3f);
+			Texture ChoosenTexture = Textures[Random.Range (0, Textures.Length)];
+			WallTexture.material.SetTexture ("_MainTex", ChoosenTexture);
 		}
 	}
 
