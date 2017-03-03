@@ -41,35 +41,49 @@ public class GameManager : MonoBehaviour {
 
 	private PanelMenuManager pmm;
 
-	public MeshRenderer WallTexture;
-	public Texture[] Textures;
+	private Coroutine playingCoroutine;
 
-
+	public MeshRenderer wallWithTexture;
+	private Texture baseWallTexture;
+	private Coroutine changingTexCoroutine;
 
 	void Awake() {
 		pmm = FindObjectOfType<PanelMenuManager>();
+		if(wallWithTexture != null) {
+			baseWallTexture = wallWithTexture.material.GetTexture("_MainTex");
+		}
 	}
 
 	// Use this for initialization
-	void Start () {
-		StartCoroutine (WallChangeTexture());
-	}
+//	void Start () {
+//	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(isGameRunning) {
 			UpdateTimer();
-
 		}
 	}
 
-	//Texture CHANGE
 
-	IEnumerator WallChangeTexture() {
-		while (true) {
-			yield return new WaitForSeconds (0.3f);
-			Texture ChoosenTexture = Textures[Random.Range (0, Textures.Length)];
-			WallTexture.material.SetTexture ("_MainTex", ChoosenTexture);
+	// This function should be elsewhere but no more time running
+	public void ChangeTexture(Texture newText) {
+		if(newText != null) {
+			if(changingTexCoroutine != null) {
+				StopCoroutine(changingTexCoroutine);
+			}
+			changingTexCoroutine = StartCoroutine(AnimChangeTexture(newText));
+		}
+	}
+
+	// This function should be elsewhere but no more time running
+	IEnumerator AnimChangeTexture(Texture newTex) {
+		if(wallWithTexture != null) {
+			if(newTex != wallWithTexture.material.GetTexture("_MainTex")) {
+				wallWithTexture.material.SetTexture("_MainTex", newTex);
+			}
+			yield return new WaitForSeconds(1.0f);
+			wallWithTexture.material.SetTexture("_MainTex", baseWallTexture);
 		}
 	}
 
@@ -87,17 +101,16 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void InitialCountdown() {
-		StartCoroutine(PlayingRoutine());
+		playingCoroutine = StartCoroutine(PlayingRoutine());
 	}
 
 	IEnumerator PlayingRoutine() {
+		yield return new WaitForSeconds(1.0f);
 		isGameRunning = true;
 		while(isGameRunning) {
+			SpawnMolenchons();
 			float timeToWait = Random.Range(minTimeNewSpawn, maxTimeNewSpawn);
 			yield return new WaitForSeconds(timeToWait);
-			if(isGameRunning) {
-				SpawnMolenchons();
-			}
 		}
 	}
 
@@ -111,7 +124,9 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator EndGame() {
 		isGameRunning = false;
-		StopCoroutine(PlayingRoutine());
+		if(playingCoroutine != null) {
+			StopCoroutine(playingCoroutine);
+		}
 		yield return new WaitForSeconds(1.0f);
 		pmm.ShowEndGamePanels();
 	}

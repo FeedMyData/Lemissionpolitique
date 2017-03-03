@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpeechElement {
 	public string text;
 	public AudioClip audio;
+	public Texture wallTexture;
 }
 
 public class SpeechList : MonoBehaviour {

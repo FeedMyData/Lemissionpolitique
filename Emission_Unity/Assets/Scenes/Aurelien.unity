@@ -1148,6 +1148,7 @@ MonoBehaviour:
   SpeechArray:
   - text: Le Pen !
     audio: {fileID: 0}
+    wallTexture: {fileID: 2800000, guid: 1f78ad8769c866045ab2f53cfc55067b, type: 3}
 --- !u!1 &555061385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,10 +1927,13 @@ MonoBehaviour:
   SpeechArray:
   - text: 100% Vert
     audio: {fileID: 0}
+    wallTexture: {fileID: 0}
   - text: "6\xE8me r\xE9publique"
     audio: {fileID: 0}
+    wallTexture: {fileID: 0}
   - text: Changer l'UE ou la quiter c'est simple !
     audio: {fileID: 0}
+    wallTexture: {fileID: 0}
 --- !u!4 &842361962
 Transform:
   m_ObjectHideFlags: 0
@@ -2039,14 +2043,7 @@ MonoBehaviour:
   MolenchonPrefab: {fileID: 1572184623424984, guid: 3e41b060cde6bab4c8fdfa929a84423e,
     type: 2}
   HammerInteractionZone: {fileID: 290625447}
-  WallTexture: {fileID: 446225806}
-  Textures:
-  - {fileID: 2800000, guid: 2a42d0616a68e414183f2339e1622ba0, type: 3}
-  - {fileID: 2800000, guid: 7e134b5c555543543a8b63ebe10b8a25, type: 3}
-  - {fileID: 2800000, guid: 9d4a9c7bba366624cb89f01622fae42c, type: 3}
-  - {fileID: 2800000, guid: 17e69e7212ccb8c48a850778d299d1dc, type: 3}
-  - {fileID: 2800000, guid: 7e134b5c555543543a8b63ebe10b8a25, type: 3}
-  - {fileID: 2800000, guid: 6a75ea4e57364b9418ff18ca89e04f91, type: 3}
+  wallWithTexture: {fileID: 446225806}
 --- !u!4 &886383083
 Transform:
   m_ObjectHideFlags: 0
@@ -4409,6 +4406,7 @@ MonoBehaviour:
   SpeechArray:
   - text: Cuba !
     audio: {fileID: 0}
+    wallTexture: {fileID: 2800000, guid: 6a75ea4e57364b9418ff18ca89e04f91, type: 3}
 --- !u!1 &2129821687
 GameObject:
   m_ObjectHideFlags: 0

@@ -83,6 +83,7 @@ public class Hammer : MonoBehaviour {
 	void DoCrush() {
 		Sequence doCrush = DOTween.Sequence();
 		doCrush.AppendCallback(()=>SpawnSpeechBubble());
+		doCrush.AppendCallback(()=>ChangeWallTexture());
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,50), timetoCrushRotate));
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,-20), timetoCrushRotate));
 		doCrush.Append(transform.DOLocalMoveY(-1.0f, timeToCrushMoveDown).SetRelative());
@@ -93,6 +94,12 @@ public class Hammer : MonoBehaviour {
 		doCrush.AppendCallback(()=>BackToRest());
 		doCrush.Play();
 		gm.HammerHasCrushed();
+	}
+
+	void ChangeWallTexture() {
+		if(specificCurrentUser != null) {
+			
+		}
 	}
 
 	void SpawnSpeechBubble() {

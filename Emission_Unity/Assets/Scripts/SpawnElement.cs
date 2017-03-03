@@ -65,7 +65,7 @@ public class SpawnElement : MonoBehaviour {
 	}
 
 	void MoveUp() {
-		transform.DOLocalMoveY(2.5f, 0.2f).OnComplete(()=>BeginSpeech()).Play();
+		transform.DOLocalMoveY(2.0f, 0.2f).OnComplete(()=>BeginSpeech()).Play();
 	}
 
 	void BeginSpeech() {
@@ -102,11 +102,11 @@ public class SpawnElement : MonoBehaviour {
 			beginSpeechSeq.Pause();
 		}
 		Sequence crushSeq = DOTween.Sequence();
-		crushSeq.Append(molenchonMesh.transform.DOScaleY(0.2f, 0.5f));
-		crushSeq.Join(molenchonMesh.transform.DOScaleX(1.6f, 0.5f));
-		crushSeq.Join(molenchonMesh.transform.DOScaleZ(1.6f, 0.5f));
-		crushSeq.Append(speechBubble.background.DOColor(bubbleSpeechInterruptedColor, 0.5f));
-		crushSeq.Append(molenchonMesh.material.DOFade(0, 1.0f));
+		crushSeq.Append(molenchonMesh.transform.DOScaleY(0.2f, 0.2f));
+		crushSeq.Join(molenchonMesh.transform.DOScaleX(1.6f, 0.2f));
+		crushSeq.Join(molenchonMesh.transform.DOScaleZ(1.6f, 0.2f));
+		crushSeq.Append(speechBubble.background.DOColor(bubbleSpeechInterruptedColor, 0.2f));
+		crushSeq.Append(molenchonMesh.material.DOFade(0, 0.2f));
 		crushSeq.AppendCallback(()=>Despawn()).Play();
 	}
 
