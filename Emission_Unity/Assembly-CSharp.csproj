@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\PopularityFeedback.cs" />
      <Compile Include="Assets\Scripts\ScoreInfo.cs" />
      <Compile Include="Assets\Scripts\SimplePool.cs" />
+     <Compile Include="Assets\Scripts\SoundManager.cs" />
      <Compile Include="Assets\Scripts\SpawnElement.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\SpeechBubble.cs" />
