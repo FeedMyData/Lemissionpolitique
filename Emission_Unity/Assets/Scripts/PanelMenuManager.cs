@@ -24,7 +24,7 @@ public class PanelMenuManager : MonoBehaviour {
 	}
 
 	public void ShowEndGamePanels() {
-		scorePanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
+//		scorePanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
 		playPanel.ActivatePanel();
 		scorePanel.ActivatePanel();
 	}
@@ -32,7 +32,7 @@ public class PanelMenuManager : MonoBehaviour {
 	public void RemoveAllPanels() {
 		playPanel.DeactivatePanel();
 		infoPanel.DeactivatePanel();
-		scorePanel.DeactivatePanel();
+//		scorePanel.DeactivatePanel();
 	}
 
 }
