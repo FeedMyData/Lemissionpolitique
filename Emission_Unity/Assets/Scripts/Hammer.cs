@@ -10,9 +10,11 @@ public class Hammer : MonoBehaviour {
 	public Transform usersContainer;
 	public Transform userBubblesContainer;
 	public GameObject prefabUserSpeechBubble;
+	public Transform hammermeshcontainer;
 
 	public float timeToGoToPosition = 0.1f;
 	public float timeToGoToRest = 0.1f;
+	public float timetoCrushRotate = 5f;
 	public float timeToCrushMoveDown = 0.05f;
 	public float timeToCrushMoveUp = 0.05f;
 
@@ -77,10 +79,13 @@ public class Hammer : MonoBehaviour {
 	void DoCrush() {
 		Sequence doCrush = DOTween.Sequence();
 		doCrush.AppendCallback(()=>SpawnSpeechBubble());
+		doCrush.Append(hammermeshcontainer.DOLocalRotate(new Vector3(0,0,50), timetoCrushRotate));
+		doCrush.Append(hammermeshcontainer.DOLocalRotate(new Vector3(0,0,-20), timetoCrushRotate));
 		doCrush.Append(transform.DOLocalMoveY(-1.0f, timeToCrushMoveDown).SetRelative());
 		doCrush.InsertCallback(0,()=>EnableDisableCollider(true));
 		doCrush.AppendCallback(()=>EnableDisableCollider(false));
 		doCrush.Append(transform.DOLocalMoveY(1.0f, timeToCrushMoveUp).SetRelative());
+		doCrush.Append(hammermeshcontainer.DOLocalRotate(new Vector3(0,0,00), timetoCrushRotate));
 		doCrush.AppendCallback(()=>BackToRest());
 		doCrush.Play();
 		gm.HammerHasCrushed();

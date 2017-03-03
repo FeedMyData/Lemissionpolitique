@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class HammerUser : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class HammerUser : MonoBehaviour {
 //	}
 
 	public void SpeakAnimation() {
+	//	Doesnt work
+	//	GetComponent<Transform> ().DOShakePosition (0.5f, 5, 20, 90, true, true);
 		
 	}
 }

@@ -24,7 +24,7 @@ public class PanelMenuManager : MonoBehaviour {
 	}
 
 	public void ShowEndGamePanels() {
-		infoPanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
+//		infoPanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
 		playPanel.ActivatePanel();
 		scorePanel.ActivatePanel();
 	}
