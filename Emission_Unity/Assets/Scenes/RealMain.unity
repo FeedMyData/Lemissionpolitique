@@ -2252,7 +2252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4185130fbff7da44b14b242ef15206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSecondsDuration: 10
+  gameSecondsDuration: 30
   minTimeNewSpawn: 1
   maxTimeNewSpawn: 4
   minMolenchonsToSpawnAtTheSameTime: 1
