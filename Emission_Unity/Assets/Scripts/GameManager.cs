@@ -22,10 +22,14 @@ public class GameManager : MonoBehaviour {
 
 	public SpeechList molenchonSpeechList;
 
-	private float currentPopularity = 0.0f;
-	private int totalMolenchonCrushed = 0;
-	private int totalMolenchonEndedSpeech = 0;
-	private int totalHammerCrushes = 0;
+	[HideInInspector]
+	public float currentPopularity = 0.0f;
+	[HideInInspector]
+	public int totalMolenchonCrushed = 0;
+	[HideInInspector]
+	public int totalMolenchonEndedSpeech = 0;
+	[HideInInspector]
+	public int totalHammerCrushes = 0;
 
 	public Spawner[] spawnPositions;
 
@@ -91,7 +95,9 @@ public class GameManager : MonoBehaviour {
 		while(isGameRunning) {
 			float timeToWait = Random.Range(minTimeNewSpawn, maxTimeNewSpawn);
 			yield return new WaitForSeconds(timeToWait);
-			SpawnMolenchons();
+			if(isGameRunning) {
+				SpawnMolenchons();
+			}
 		}
 	}
 
@@ -137,10 +143,6 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 		return availableSpawners;
-	}
-
-	public float GetTimer() {
-		return currentTimer;
 	}
 
 	public bool IsGameRunning() {
