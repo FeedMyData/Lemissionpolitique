@@ -6,6 +6,10 @@ using DG.Tweening;
 public class SpawnElement : MonoBehaviour {
 
 	public SpeechBubble speechBubble;
+	public SpeechBubble hologramBubble;
+	public Color hologramColor = new Color(0, 115.0f/255.0f, 172.0f/255.0f);
+	public Color bubbleSpeechInterruptedColor = Color.red;
+	public Color bubbleSpeechValidatedColor = Color.green;
 	private SpeechList speechList;
 
 	private bool isInvincible = false;
@@ -13,6 +17,7 @@ public class SpawnElement : MonoBehaviour {
 
 	private Color baseMeshColor;
 	private Color baseBubbleBgColor;
+	private Color baseEmissiveColor;
 	private MeshRenderer molenchonMesh;
 	private Vector3 baseScale;
 	private Vector3 speechBubbleBaseScale;
@@ -26,14 +31,16 @@ public class SpawnElement : MonoBehaviour {
 		molenchonMesh = GetComponentInChildren<MeshRenderer>();
 		baseMeshColor = molenchonMesh.material.color;
 		baseBubbleBgColor = speechBubble.background.color;
-		baseScale = transform.localScale;
+		baseEmissiveColor = molenchonMesh.material.GetColor("_EmissionColor");
+		baseScale = molenchonMesh.transform.localScale;
 		speechBubbleBaseScale = speechBubble.GetComponent<RectTransform>().localScale;
+		hologramBubble.gameObject.SetActive(false);
 	}
 
 	// Use this for initialization
-//	void Start () {
-//		
-//	}
+	void Start () {
+		hologramBubble.gameObject.SetActive(false);
+	}
 	
 	// Update is called once per frame
 //	void Update () {
@@ -50,8 +57,10 @@ public class SpawnElement : MonoBehaviour {
 		speechBubble.GetComponent<RectTransform>().localScale = Vector3.zero;
 		speechBubble.speechText.text = "";
 		speechBubble.background.color = baseBubbleBgColor;
-		transform.localScale = baseScale;
+		molenchonMesh.transform.localScale = baseScale;
 		molenchonMesh.material.color = baseMeshColor;
+		molenchonMesh.material.SetColor("_EmissionColor", baseEmissiveColor);
+		hologramBubble.gameObject.SetActive(false);
 		MoveUp();
 	}
 
@@ -74,7 +83,7 @@ public class SpawnElement : MonoBehaviour {
 		canBeCrushed = false;
 		gm.MolenchonFinishedSpeech();
 		Sequence endSeq = DOTween.Sequence();
-		endSeq.Append(speechBubble.background.DOColor(Color.green, 0.5f));
+		endSeq.Append(speechBubble.background.DOColor(bubbleSpeechValidatedColor, 0.5f));
 		endSeq.Append(speechBubble.GetComponent<RectTransform>().DOScale(0, 0.5f));
 		endSeq.AppendCallback(()=>MoveDown()).Play();
 	}
@@ -93,10 +102,10 @@ public class SpawnElement : MonoBehaviour {
 			beginSpeechSeq.Pause();
 		}
 		Sequence crushSeq = DOTween.Sequence();
-		crushSeq.Append(transform.DOScaleY(0.2f, 0.5f));
-		crushSeq.Join(transform.DOScaleX(1.6f, 0.5f));
-		crushSeq.Join(transform.DOScaleZ(1.6f, 0.5f));
-		crushSeq.Append(speechBubble.background.DOColor(Color.red, 0.5f));
+		crushSeq.Append(molenchonMesh.transform.DOScaleY(0.2f, 0.5f));
+		crushSeq.Join(molenchonMesh.transform.DOScaleX(1.6f, 0.5f));
+		crushSeq.Join(molenchonMesh.transform.DOScaleZ(1.6f, 0.5f));
+		crushSeq.Append(speechBubble.background.DOColor(bubbleSpeechInterruptedColor, 0.5f));
 		crushSeq.Append(molenchonMesh.material.DOFade(0, 1.0f));
 		crushSeq.AppendCallback(()=>Despawn()).Play();
 	}
@@ -113,19 +122,26 @@ public class SpawnElement : MonoBehaviour {
 	}
 
 	void ShowHologram() {
-		Color newColor = molenchonMesh.material.color;
-		newColor.a = 0.8f;
-		molenchonMesh.material.color = newColor;
+		molenchonMesh.material.color = molenchonMesh.material.color - new Color(0,0,0,0.2f);
+		molenchonMesh.material.SetColor("_EmissionColor", hologramColor);
 
-		if(beginSpeechSeq != null && beginSpeechSeq.IsPlaying()) {
-			beginSpeechSeq.Pause();
+		Sequence holoBubSeq = DOTween.Sequence();
+		hologramBubble.GetComponent<CanvasGroup>().alpha = 1;
+		hologramBubble.gameObject.SetActive(true);
+		holoBubSeq.AppendInterval(0.5f);
+		holoBubSeq.Append(hologramBubble.GetComponent<CanvasGroup>().DOFade(0, 1.0f));
+		holoBubSeq.AppendCallback(()=>hologramBubble.gameObject.SetActive(false));
+		holoBubSeq.Play();
 
-			Sequence stenchonSeq = DOTween.Sequence();
-			stenchonSeq.Append(speechBubble.speechText.DOText("Can't stenchon the Mélenchon !", 0.2f));
-			stenchonSeq.AppendInterval(0.8f);
-			stenchonSeq.OnComplete(()=>ResumeSpeechAtPosition(beginSpeechSeq.Elapsed() + stenchonSeq.Duration()));
-			stenchonSeq.Play();
-		}
+//		if(beginSpeechSeq != null && beginSpeechSeq.IsPlaying()) {
+//			beginSpeechSeq.Pause();
+//
+//			Sequence stenchonSeq = DOTween.Sequence();
+//			stenchonSeq.Append(speechBubble.speechText.DOText("Can't stenchon the Mélenchon !", 0.2f));
+//			stenchonSeq.AppendInterval(0.8f);
+//			stenchonSeq.OnComplete(()=>ResumeSpeechAtPosition(beginSpeechSeq.Elapsed() + stenchonSeq.Duration()));
+//			stenchonSeq.Play();
+//		}
 	}
 
 	void ResumeSpeechAtPosition(float position) {

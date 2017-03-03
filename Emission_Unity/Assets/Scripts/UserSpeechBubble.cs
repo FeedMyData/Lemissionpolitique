@@ -33,9 +33,11 @@ public class UserSpeechBubble : MonoBehaviour {
 	public void InitUserBubble(HammerUser user) {
 		GetComponent<RectTransform>().localScale = Vector3.zero;
 		SpeechElement speech = user.speechList.ChooseSpeech();
-		speechBubble.speechText.text = speech.text;
-		speechBubble.profilePicture.sprite = user.profilePicture;
-		animationSeq.Restart();
+		if(speech != null) {
+			speechBubble.speechText.text = speech.text;
+//			speechBubble.profilePicture.sprite = user.profilePicture;
+			animationSeq.Restart();
+		}
 	}
 
 	void Despawn() {

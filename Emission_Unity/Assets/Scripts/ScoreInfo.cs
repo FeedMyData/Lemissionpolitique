@@ -27,10 +27,11 @@ public class ScoreInfo : MonoBehaviour {
 //	}
 
 	public void UpdatePanelScoreText() {
-//		popularityText.text
-//		molenchonCrushed.text
-//		molenchonFinished.text
-//		totalHammer.text
+		int pop = (int)(gm.currentPopularity * 100);
+		popularityText.text = string.Format("{0}%", pop);
+		molenchonCrushed.text = gm.totalMolenchonCrushed.ToString();
+		molenchonFinished.text = gm.totalMolenchonEndedSpeech.ToString();
+		totalHammer.text = gm.totalHammerCrushes.ToString();
 	}
 
 }
