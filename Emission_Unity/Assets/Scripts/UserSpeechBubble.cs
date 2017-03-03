@@ -8,6 +8,7 @@ public class UserSpeechBubble : MonoBehaviour {
 	private SpeechBubble speechBubble;
 	private Vector3 baseScale;
 	private Sequence animationSeq;
+	private GameManager gm;
 
 	void Awake() {
 		speechBubble = GetComponent<SpeechBubble>();
@@ -18,11 +19,12 @@ public class UserSpeechBubble : MonoBehaviour {
 		animationSeq.Append(GetComponent<RectTransform>().DOScale(Vector3.zero, 0.5f));
 		animationSeq.AppendCallback(()=>Despawn());
 		animationSeq.SetAutoKill(false);
+		gm = FindObjectOfType<GameManager>();
+
 	}
 
 	// Use this for initialization
 //	void Start () {
-//		
 //	}
 	
 	// Update is called once per frame
@@ -33,9 +35,14 @@ public class UserSpeechBubble : MonoBehaviour {
 	public void InitUserBubble(HammerUser user) {
 		GetComponent<RectTransform>().localScale = Vector3.zero;
 		SpeechElement speech = user.speechList.ChooseSpeech();
-		speechBubble.speechText.text = speech.text;
-		speechBubble.profilePicture.sprite = user.profilePicture;
-		animationSeq.Restart();
+		if(speech != null) {
+			speechBubble.speechText.text = speech.text;
+//			speechBubble.profilePicture.sprite = user.profilePicture;
+			animationSeq.Restart();
+			if(speech.wallTexture != null && gm != null) {
+				gm.ChangeTexture(speech.wallTexture);
+			}
+		}
 	}
 
 	void Despawn() {

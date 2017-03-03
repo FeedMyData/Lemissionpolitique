@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SpeechBubble : MonoBehaviour {
 
 	public Text speechText;
-	public Image profilePicture;
+//	public Image profilePicture;
 	public Image background;
 
 	// Use this for initialization

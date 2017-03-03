@@ -27,14 +27,13 @@ public class MenuPanel : MonoBehaviour {
 		ActivatingSequence.SetAutoKill(false);
 
 		GetComponent<RectTransform>().anchoredPosition = DeactivatedPosition;
-		gameObject.SetActive(false);
 		panelOn = false;
 	}
 
 	// Use this for initialization
-//	void Start () {
-//		
-//	}
+	void Start () {
+		gameObject.SetActive(false);
+	}
 	
 	// Update is called once per frame
 //	void Update () {
