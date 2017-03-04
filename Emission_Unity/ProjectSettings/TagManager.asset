@@ -44,6 +44,3 @@ TagManager:
   - name: Canvas World Space
     uniqueID: 2702968327
     locked: 0
-  - name: Canvas Screen Space Camera
-    uniqueID: 3293188317
-    locked: 0
