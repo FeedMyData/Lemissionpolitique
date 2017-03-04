@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\MenuPanel.cs" />
      <Compile Include="Assets\Scripts\PanelMenuManager.cs" />
      <Compile Include="Assets\Scripts\PopularityFeedback.cs" />
+     <Compile Include="Assets\Scripts\SceneLoader.cs" />
      <Compile Include="Assets\Scripts\ScoreInfo.cs" />
      <Compile Include="Assets\Scripts\SimplePool.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
