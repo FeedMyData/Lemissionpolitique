@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SpeechElement {
 	public string text;
-	public AudioClip audio;
+	public string audioGroupName;
 	public Texture wallTexture;
 }
 

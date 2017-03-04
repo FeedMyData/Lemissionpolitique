@@ -29,6 +29,7 @@ public class PanelMenuManager : MonoBehaviour {
 
 	IEnumerator DelayedStart() {
 		yield return new WaitForSeconds(0.5f);
+		gm.sm.PlayAudioSource("Intro 1");
 		IsStartMenu = true;
 		playPanel.ActivatePanel();
 	}
@@ -51,6 +52,7 @@ public class PanelMenuManager : MonoBehaviour {
 
 	public void SetActionToPlay() {
 		IsActionToPlay = true;
+		gm.sm.StopAndFadeOutAudioSource("Intro 1", 0.0f, 1.0f);
 	}
 
 	public void SetActionToInfo() {

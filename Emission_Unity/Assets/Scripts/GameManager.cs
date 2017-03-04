@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour {
 	private bool isGameRunning = false;
 
 	private PanelMenuManager pmm;
+	[HideInInspector]
+	public SoundManager sm;
 
 	private Coroutine playingCoroutine;
 
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour {
 
 	void Awake() {
 		pmm = FindObjectOfType<PanelMenuManager>();
+		sm = FindObjectOfType<SoundManager>();
 		if(wallWithTexture != null) {
 			baseWallTexture = wallWithTexture.material.GetTexture("_MainTex");
 		}
@@ -107,6 +110,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void LaunchPlayingRoutine() {
+		sm.PlayAudioSource("game");
 		playingCoroutine = StartCoroutine(PlayingRoutine());
 	}
 
@@ -150,6 +154,8 @@ public class GameManager : MonoBehaviour {
 			StopCoroutine(playingCoroutine);
 		}
 		HidePlayingCanvas();
+		sm.StopAndFadeOutAudioSource("game", 0.0f, 1.0f);
+
 	}
 
 	void ClearCurrentGameRunning() {
