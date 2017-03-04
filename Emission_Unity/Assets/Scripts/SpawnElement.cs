@@ -125,6 +125,8 @@ public class SpawnElement : MonoBehaviour {
 		molenchonMesh.material.DOColor(molenchonMesh.material.color - new Color(0,0,0,0.2f), 0.5f).Play();
 		molenchonMesh.material.DOColor(hologramColor, "_EmissionColor", 0.5f).Play();
 
+		gm.sm.PlaySoundEffectElement("Hologram");
+
 		Sequence holoBubSeq = DOTween.Sequence();
 		hologramBubble.GetComponent<CanvasGroup>().alpha = 1;
 		hologramBubble.gameObject.SetActive(true);

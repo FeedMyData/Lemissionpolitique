@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	// This function should be elsewhere but no more time running
+	// This function should be elsewhere but no more time
 	public void ChangeTexture(Texture newText) {
 		if(newText != null) {
 			if(changingTexCoroutine != null) {

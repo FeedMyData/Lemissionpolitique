@@ -37,6 +37,9 @@ public class SoundManager : MonoBehaviour {
 //	}
 
 	public void PlaySoundEffectElement(string groupName, float volume = 1.0f , Vector3 worldPosition = default(Vector3)) {
+		if(groupName == "") {
+			return;
+		}
 		List<AudioClip> randomList = new List<AudioClip>();
 		foreach(SoundEffectElement se in soundEffectArray) {
 			if(se.groupName == groupName) {

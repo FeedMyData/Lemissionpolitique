@@ -21,7 +21,7 @@ public class Hammer : MonoBehaviour {
 	public Vector3 inputPositionOffset;
 	public Vector3 userBubbleOffset;
 
-//	private GameManager gm;
+	private GameManager gm;
 	private HammerUser[] hammerUsers;
 	private HammerUser specificCurrentUser;
 	private GameObject currentHammerUsed;
@@ -31,7 +31,7 @@ public class Hammer : MonoBehaviour {
 	private bool readyToCrushAgain = true;
 
 	void Awake() {
-//		gm = FindObjectOfType<GameManager>();
+		gm = FindObjectOfType<GameManager>();
 		hammerUsers = usersContainer.GetComponentsInChildren<HammerUser>();
 //		speechBubble.gameObject.SetActive(false);
 		EnableDisableCollider(false);
@@ -83,11 +83,11 @@ public class Hammer : MonoBehaviour {
 	void DoCrush() {
 		Sequence doCrush = DOTween.Sequence();
 		doCrush.AppendCallback(()=>SpawnSpeechBubble());
-		doCrush.AppendCallback(()=>ChangeWallTexture());
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,50), timetoCrushRotate));
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,-20), timetoCrushRotate));
 		doCrush.Append(transform.DOLocalMoveY(-1.0f, timeToCrushMoveDown).SetRelative());
 		doCrush.InsertCallback(0,()=>EnableDisableCollider(true));
+		doCrush.AppendCallback(()=>gm.sm.PlaySoundEffectElement("HammerHit"));
 		doCrush.AppendCallback(()=>EnableDisableCollider(false));
 		doCrush.Append(transform.DOLocalMoveY(1.0f, timeToCrushMoveUp).SetRelative());
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,00), timetoCrushRotate));
@@ -96,11 +96,9 @@ public class Hammer : MonoBehaviour {
 //		gm.HammerHasCrushed();
 	}
 
-	void ChangeWallTexture() {
-		if(specificCurrentUser != null) {
-			
-		}
-	}
+//	void PlayHitHammerSound() {
+//		
+//	}
 
 	void SpawnSpeechBubble() {
 		if(specificCurrentUser != null) {

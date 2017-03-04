@@ -1,21 +1,21 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SpawnElement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="92" Column="40" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="80" Column="24" />
       <File FileName="Assets\Scripts\Spawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\InputManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Hammer.cs" Line="34" Column="35" />
-      <File FileName="Assets\Scripts\SpawnElement.cs" Line="125" Column="1" />
+      <File FileName="Assets\Scripts\Hammer.cs" Line="99" Column="3" />
+      <File FileName="Assets\Scripts\SpawnElement.cs" Line="127" Column="3" />
       <File FileName="Assets\Scripts\HammerUser.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SpeechList.cs" Line="5" Column="1" />
+      <File FileName="Assets\Scripts\SpeechList.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpeechBubble.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ScoreInfo.cs" Line="37" Column="47" />
-      <File FileName="Assets\Scripts\PopularityFeedback.cs" Line="39" Column="47" />
-      <File FileName="Assets\Scripts\UserSpeechBubble.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PanelMenuManager.cs" Line="41" Column="1" />
-      <File FileName="Assets\Scripts\MenuPanel.cs" Line="32" Column="52" />
-      <File FileName="Assets\Scripts\SoundManager.cs" Line="28" Column="59" />
+      <File FileName="Assets\Scripts\ScoreInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PopularityFeedback.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UserSpeechBubble.cs" Line="42" Column="49" />
+      <File FileName="Assets\Scripts\PanelMenuManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuPanel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SoundManager.cs" Line="41" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
