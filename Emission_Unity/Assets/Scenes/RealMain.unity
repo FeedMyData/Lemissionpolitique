@@ -433,7 +433,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1591998969
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &162061191
@@ -2001,7 +2001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4185130fbff7da44b14b242ef15206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSecondsDuration: 30000
+  gameSecondsDuration: 30
   minTimeNewSpawn: 1
   maxTimeNewSpawn: 4
   minMolenchonsToSpawnAtTheSameTime: 1
@@ -2768,8 +2768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b393abdeeb49441915771950cdeea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClipArray:
-  - {fileID: 8300000, guid: dff4d7d6252e6df41b47a44738265b4c, type: 3}
+  audioArray: []
+  audioClipArray: []
 --- !u!4 &1169805447
 Transform:
   m_ObjectHideFlags: 0

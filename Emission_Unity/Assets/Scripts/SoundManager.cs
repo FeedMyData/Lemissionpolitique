@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class AudioSourceElement {
+	public string groupName;
+	public AudioSource audioSource;
+}
+
 public class SoundManager : MonoBehaviour {
-	
+
+	public AudioSourceElement[] audioArray;
+
 	public AudioClip[] audioClipArray;
 	private Dictionary<string, AudioClip> audioClipDic = new Dictionary<string, AudioClip>();
 
