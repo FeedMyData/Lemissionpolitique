@@ -448,6 +448,7 @@ RectTransform:
   m_Children:
   - {fileID: 889931301}
   - {fileID: 418956677}
+  - {fileID: 1223589415}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1945,13 +1946,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeechArray:
-  - text: 100% Vert
+  - text: "Je souhaite mettre en place une assembl\xE9e constituante pour une 6eme
+      r\xE9publique."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: "6\xE8me r\xE9publique"
+  - text: "Notre pays n'a jamais \xE9t\xE9 aussi riche, il est temps de partager ses
+      richesses."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: Changer l'UE ou la quiter !
+  - text: "La plannification \xE9cologique est vitale, il faut sortir du nucl\xE9aire."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Nous devons changer les trait\xE9s europ\xE9ens qui pr\xF4ne l'aust\xE9rit\xE9."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Nous devons priviligi\xE9 l'ONU et sortir de l'OTAN."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Je propose la s\xE9curit\xE9 sociale int\xE9grale !"
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Je veux cr\xE9er 14 tranches d'impots, et je vais taxer les \xE9migr\xE9s
+      fiscaux. "
     audioGroupName: 
     wallTexture: {fileID: 0}
 --- !u!4 &842361962
@@ -2191,14 +2207,35 @@ MonoBehaviour:
   commentText: {fileID: 1767493757}
   commentArray:
   - includeMinPop: 0
+    excludeMaxPop: 0.1
+    text: Parfait ! Les intentions de votes de Molenchon sont plus basses qu'en 2012
+      !
+  - includeMinPop: 0.1
+    excludeMaxPop: 0.2
+    text: Magnifique ! Molenchon n'a pas eu le temps de dire quoi que ce soit !
+  - includeMinPop: 0.2
+    excludeMaxPop: 0.3
+    text: "Excellent ! Les spectateurs n'ont pas pu comprendre les id\xE9es de Molenchon
+      !"
+  - includeMinPop: 0.3
+    excludeMaxPop: 0.4
+    text: C'est bien ! Molenchon n'a pas pu exprimer correctement son programme !
+  - includeMinPop: 0.4
     excludeMaxPop: 0.5
-    text: Les intentions de vote sont basses, tu as bien fait ton travail de journaliste
-      pourritique !
+    text: "Pas mal ! Mais restons vigilants, une part des spectateurs adh\xE8re encore
+      aux propros de Molenchon."
   - includeMinPop: 0.5
-    excludeMaxPop: 0.9
-    text: Les intentions de vote sont hautes, la prochaine fois, interromps plus l'explication
-      du programme !
-  - includeMinPop: 0.9
+    excludeMaxPop: 0.6
+    text: "Oh non ! Notre d\xE9mocratie est en danger, Molenchon a convaincu la majorit\xE9
+      des spectateurs !"
+  - includeMinPop: 0.6
+    excludeMaxPop: 0.7
+    text: "Catastrophe ! L'audience a \xE9t\xE9 convaincu par le programme de Molenchon
+      !"
+  - includeMinPop: 0.7
+    excludeMaxPop: 0.85
+    text: "ALERTE ! Molenchon a ali\xE9n\xE9 la population avec son discours !"
+  - includeMinPop: 0.85
     excludeMaxPop: 1.1
     text: "Can't stenchon the M\xE9lenchon !"
 --- !u!1 &926229208
@@ -3043,6 +3080,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1001 &1223589414
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 162061191}
+    m_Modifications:
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 4.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1223589415 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1223589414}
 --- !u!1 &1306441288
 GameObject:
   m_ObjectHideFlags: 0
