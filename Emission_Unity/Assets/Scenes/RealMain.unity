@@ -1945,13 +1945,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeechArray:
-  - text: 100% Vert
+  - text: "Je souhaite mettre en place une assembl\xE9e constituante pour uen 6eme
+      r\xE9publique."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: "6\xE8me r\xE9publique"
+  - text: "Notre pays n'a jamais \xE9t\xE9 aussi riche, il est temps de partager ses
+      richesses."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: Changer l'UE ou la quiter !
+  - text: "La plannification \xE9cologique est vitale, il faut sortir du nucl\xE9aire."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Nous devons changer les trait\xE9s europ\xE9ens qui pr\xF4ne l'aust\xE9rit\xE9."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Nous devons priviligi\xE9 l'ONU et sortir de l'OTAN."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Je propose la s\xE9curit\xE9 sociale int\xE9grale !"
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: "Je veux cr\xE9er 14 tranches d'impots, et je vais taxer les \xE9migr\xE9s
+      fiscaux."
     audioGroupName: 
     wallTexture: {fileID: 0}
 --- !u!4 &842361962
@@ -2191,16 +2206,37 @@ MonoBehaviour:
   commentText: {fileID: 1767493757}
   commentArray:
   - includeMinPop: 0
+    excludeMaxPop: 0.11
+    text: Parfait ! Les intentions de votes de Molenchon sont plus basses qu'en 2012
+      !
+  - includeMinPop: 0.11
+    excludeMaxPop: 0.2
+    text: Magnifique ! Molenchon n'a pas eu le temps de dire quoi que ce soit !
+  - includeMinPop: 0.2
+    excludeMaxPop: 0.3
+    text: "Excellent ! Les spectateurs n'ont pas pu comprendre les id\xE9es de Molenchon
+      !"
+  - includeMinPop: 0.3
+    excludeMaxPop: 0.4
+    text: C'est bien ! Molenchon n'a pas pu exprimer correctement son programme !
+  - includeMinPop: 0.4
     excludeMaxPop: 0.5
-    text: Les intentions de vote sont basses, tu as bien fait ton travail de journaliste
-      pourritique !
+    text: "Pas mal ! Mais restons vigilants, une part des spectateurs adh\xE8re encore
+      aux propros de Molenchon."
   - includeMinPop: 0.5
-    excludeMaxPop: 0.9
-    text: Les intentions de vote sont hautes, la prochaine fois, interromps plus l'explication
-      du programme !
-  - includeMinPop: 0.9
+    excludeMaxPop: 0.6
+    text: "Oh non ! Notre d\xE9mocratie est en danger, Molenchon a convaincu la majorit\xE9
+      des spectateurs !"
+  - includeMinPop: 0.6
+    excludeMaxPop: 0.7
+    text: "Catastrophe ! L'audience a \xE9t\xE9 convaincu par le programme de Molenchon
+      !"
+  - includeMinPop: 0.7
+    excludeMaxPop: 0.8
+    text: 'ALERTE ! MOLENCHON A CONVAINCU : LE NEO-LIBERALISME EST EN DANGER !'
+  - includeMinPop: 0.8
     excludeMaxPop: 1.1
-    text: "Can't stenchon the M\xE9lenchon !"
+    text: Can't stenchon the Molenchon !
 --- !u!1 &926229208
 GameObject:
   m_ObjectHideFlags: 0
