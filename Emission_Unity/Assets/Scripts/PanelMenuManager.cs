@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PanelMenuManager : MonoBehaviour {
 
 	public MenuPanel playPanel;
 	public MenuPanel infoPanel;
 	public MenuPanel scorePanel;
+	public UnityEngine.UI.Image startingForeground;
 
 	private bool IsStartMenu = false;
 	private bool IsActionToPlay = false;
@@ -19,7 +21,11 @@ public class PanelMenuManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(DelayedStart());
+		Sequence introForeground = DOTween.Sequence();
+		introForeground.Append(startingForeground.DOFade(0, 0.5f));
+		introForeground.AppendCallback(()=>startingForeground.gameObject.SetActive(false));
+		introForeground.AppendCallback(()=>DelayedStart());
+		introForeground.Play();
 	}
 	
 	// Update is called once per frame
@@ -27,8 +33,7 @@ public class PanelMenuManager : MonoBehaviour {
 //		
 //	}
 
-	IEnumerator DelayedStart() {
-		yield return new WaitForSeconds(0.5f);
+	void DelayedStart() {
 		gm.sm.PlayAudioSource("Intro 1");
 		IsStartMenu = true;
 		playPanel.ActivatePanel();

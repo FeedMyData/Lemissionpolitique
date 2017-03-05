@@ -28,7 +28,8 @@ public class SceneLoader : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(asyncLoading != null && !changingScene) {
-			if(asyncLoading.isDone) {
+//			if(asyncLoading.isDone) {
+			if(asyncLoading.progress >= 0.88f) {
 				changingScene = true;
 				FinishedLoading();
 			} else {
@@ -39,18 +40,18 @@ public class SceneLoader : MonoBehaviour {
 
 	void UpdateProgressBar() {
 		if(asyncLoading != null) {
-			progressBar.DOSizeDelta(new Vector2(1920.0f * asyncLoading.progress, progressBar.sizeDelta.y), 0.5f, true).Play();
+			progressBar.DOSizeDelta(new Vector2(Screen.width * asyncLoading.progress, progressBar.sizeDelta.y), 0.5f).Play();
 		}
 	}
 
 	void FinishedLoading() {
-		progressBar.DOSizeDelta(new Vector2(1920.0f, progressBar.sizeDelta.y), 0.5f, true).Play();
-		container.DOFade(0, 0.5f).OnComplete(()=>ChangeScene()).Play();
+		Sequence finishSeq = DOTween.Sequence();
+		finishSeq.Append(progressBar.DOSizeDelta(new Vector2(Screen.width, progressBar.sizeDelta.y), 0.5f));
+		finishSeq.Append(container.DOFade(0, 0.5f));
+		finishSeq.AppendCallback(()=>ChangeScene()).Play();
 	}
 
 	void ChangeScene() {
-		if(asyncLoading != null) {
-			asyncLoading.allowSceneActivation = true;
-		}
+		asyncLoading.allowSceneActivation = true;
 	}
 }
