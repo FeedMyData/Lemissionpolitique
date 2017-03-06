@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour {
 			StopCoroutine(playingCoroutine);
 		}
 		HidePlayingCanvas();
+		sm.PlaySoundEffectElement ("End");
 		sm.StopAndFadeOutAudioSource("game_loop", 0.0f, 1.0f);
 	}
 

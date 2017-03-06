@@ -29,6 +29,7 @@ public class Hammer : MonoBehaviour {
 	private Sequence backToRestSeq;
 
 	private bool readyToCrushAgain = true;
+	private bool hasTouched = false;
 
 	void Awake() {
 		gm = FindObjectOfType<GameManager>();
@@ -83,14 +84,15 @@ public class Hammer : MonoBehaviour {
 	}
 
 	void DoCrush() {
+		hasTouched = false;
 		Sequence doCrush = DOTween.Sequence();
 		doCrush.AppendCallback(()=>SpawnSpeechBubble());
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,50), timetoCrushRotate));
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,-20), timetoCrushRotate));
 		doCrush.Append(transform.DOLocalMoveY(-1.0f, timeToCrushMoveDown).SetRelative());
 		doCrush.InsertCallback(0,()=>EnableDisableCollider(true));
-		doCrush.AppendCallback(()=>gm.sm.PlaySoundEffectElement("HammerHit"));
 		doCrush.AppendCallback(()=>EnableDisableCollider(false));
+		doCrush.AppendCallback(()=>CheckIfHammerHasTouched());
 		doCrush.Append(transform.DOLocalMoveY(1.0f, timeToCrushMoveUp).SetRelative());
 		doCrush.Append(hammerContainer.DOLocalRotate(new Vector3(0,0,00), timetoCrushRotate));
 		doCrush.AppendCallback(()=>BackToRest());
@@ -98,9 +100,11 @@ public class Hammer : MonoBehaviour {
 //		gm.HammerHasCrushed();
 	}
 
-//	void PlayHitHammerSound() {
-//		
-//	}
+	void CheckIfHammerHasTouched() {
+		if (!hasTouched) {
+			gm.sm.PlaySoundEffectElement("MissHit");
+		}
+	}
 
 	void SpawnSpeechBubble() {
 		if(specificCurrentUser != null) {
@@ -113,6 +117,7 @@ public class Hammer : MonoBehaviour {
 
 	void OnTriggerEnter(Collider otherCollider) {
 		if(otherCollider.GetComponent<SpawnElement>() != null) {
+			hasTouched = true;
 			otherCollider.GetComponent<SpawnElement>().ReceiveHit();
 		}
 	}

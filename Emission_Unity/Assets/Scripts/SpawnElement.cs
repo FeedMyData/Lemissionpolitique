@@ -74,7 +74,7 @@ public class SpawnElement : MonoBehaviour {
 		if(speech != null) {
 			beginSpeechSeq = DOTween.Sequence();
 			beginSpeechSeq.Append(speechBubble.GetComponent<RectTransform>().DOScale(speechBubbleBaseScale, 0.2f));
-			beginSpeechSeq.Append(speechBubble.speechText.DOText(speech.text, gm.timePerCharacterMolenchonSpeech * speech.text.Length));
+			beginSpeechSeq.Append(speechBubble.speechText.DOText(speech.text, gm.timePerCharacterMolenchonSpeech * speech.text.Length).SetEase(Ease.Linear));
 			beginSpeechSeq.OnComplete(()=>EndOfSpeech()).Play();
 		}
 	}
@@ -101,23 +101,26 @@ public class SpawnElement : MonoBehaviour {
 		if(beginSpeechSeq != null && beginSpeechSeq.IsPlaying()) {
 			beginSpeechSeq.Pause();
 		}
+		gm.sm.PlaySoundEffectElement("HammerHit");
 		Sequence crushSeq = DOTween.Sequence();
-		crushSeq.Append(molenchonMesh.transform.DOScaleY(0.2f, 0.2f));
-		crushSeq.Join(molenchonMesh.transform.DOScaleX(1.6f, 0.2f));
-		crushSeq.Join(molenchonMesh.transform.DOScaleZ(1.6f, 0.2f));
+		crushSeq.Append(molenchonMesh.transform.DOScaleY(0.4f, 0.1f));
+		crushSeq.Join(molenchonMesh.transform.DOScaleX(1.6f, 0.1f));
+		crushSeq.Join(molenchonMesh.transform.DOScaleZ(1.6f, 0.1f));
 		crushSeq.Append(speechBubble.background.DOColor(bubbleSpeechInterruptedColor, 0.2f));
-		crushSeq.Append(molenchonMesh.material.DOFade(0, 0.2f));
+		crushSeq.Append(molenchonMesh.material.DOFade(0, 0.1f));
 		crushSeq.AppendCallback(()=>Despawn()).Play();
 	}
 
 	public void ReceiveHit() {
-		if(isInvincible) {
+		if (isInvincible) {
 			// Feedback for invicible Hologram Molenchon
-			ShowHologram();
+			ShowHologram ();
 		} else if (canBeCrushed) {
 			// Crush this one
-			gm.MolenchonCrushed();
-			Crush();
+			gm.MolenchonCrushed ();
+			Crush ();
+		} else {
+			gm.sm.PlaySoundEffectElement("MissHit");
 		}
 	}
 
