@@ -1008,6 +1008,48 @@ CanvasRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 471b42c084ec3834aa0d546fc2585a6c, type: 3}
   m_PrefabInternal: {fileID: 1164641656}
+--- !u!1001 &380318297
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469801831047642, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 81da5ae60d8dc5b4ea697674ecb2262f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &387037878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,28 +2924,42 @@ MonoBehaviour:
   soundEffectArray:
   - groupName: HammerHit
     audioClip: {fileID: 8300000, guid: 17e2851c09ee1404db3295bb113287df, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: HammerHit
     audioClip: {fileID: 8300000, guid: b88e32241a45c264b81ccfd9776357f0, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: HammerHit
     audioClip: {fileID: 8300000, guid: db2bfa26a6e4a4747818517e0450f8bd, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: b2866116ea0133644bb66bfe009f4661, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: 9ce1e5a0665c4f14b9c83bb3dddae0c5, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: cf012f160f649584b94a0b7b08210632, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: a01292a096a388a409773321ab8dcd93, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: LePen
     audioClip: {fileID: 8300000, guid: 590f5a23eff813d45a930f2f4c23a3d3, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: LePen
     audioClip: {fileID: 8300000, guid: 0d89943253d4e5e47a3b73d6bf7aef38, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Poutine
     audioClip: {fileID: 8300000, guid: d24c982e7ee7a0640ad043ff2f6cec3c, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Poutine
     audioClip: {fileID: 8300000, guid: 137dd00ba88139f4da96c97fed23ba9b, type: 3}
+    audioMixerGroup: {fileID: 0}
   - groupName: Poutine
     audioClip: {fileID: 8300000, guid: 416fb7c756b47644db27604126f913ac, type: 3}
+    audioMixerGroup: {fileID: 0}
+  audioEffectPrefab: {fileID: 1223473917525188, guid: 81da5ae60d8dc5b4ea697674ecb2262f,
+    type: 2}
   soundImageButtonWithOnSprite: {fileID: 1306441291}
   soundOffSprite: {fileID: 21300000, guid: 569b41464b58a44489212150def8ed7f, type: 3}
 --- !u!4 &1169805447
