@@ -2307,10 +2307,10 @@ MonoBehaviour:
   maxTimeNewSpawn: 2.5
   minMolenchonsToSpawnAtTheSameTime: 2
   maxMolenchonsToSpawnAtTheSameTime: 3
-  coefScoreMolenchonEndingSpeech: 5.2
+  coefScoreMolenchonEndingSpeech: 4.3
   probabilityOfInvincibleMolenchon: 0.1
   timePerCharacterMolenchonSpeech: 0.05
-  beginningHiddenPopularity: 0.085
+  beginningHiddenPopularity: 0.08
   baseStepChangingPopularity: 0.005
   popularityScript: {fileID: 286495505}
   molenchonSpeechList: {fileID: 842361961}
@@ -4540,7 +4540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -44, y: 16}
+  m_AnchoredPosition: {x: -25, y: 27}
   m_SizeDelta: {x: 900, y: 188}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767493757
@@ -5005,7 +5005,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1964925442}
   m_LocalRotation: {x: 0.000000003183647, y: 8.6671104e-10, z: 0.2588191, w: 0.9659259}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000052947387}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1925079162}
@@ -5013,7 +5013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1721, y: 133.19547}
+  m_AnchoredPosition: {x: 1725.2, y: 148.9}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964925444
