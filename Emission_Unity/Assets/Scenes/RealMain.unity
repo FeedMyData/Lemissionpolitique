@@ -536,10 +536,10 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Aidez les journalistes \xE0 sauver le d\xE9bat d\xE9mocratique. L'horrible
-    Molenchon est l'invit\xE9 de votre plateau et il a l'intention de parler de son
-    programme. \n\nIl est de votre devoir de le remettre sur le droit chemin en lui
-    rappelant les sujets qui int\xE9ressent les Fran\xE7ais. Attention, s'il parle
-    trop il risque de gagner des voix !"
+    M\xE9lenchon est l'invit\xE9 de votre plateau et il a l'intention de parler de
+    son programme. \n\n<b><color=red>Tapez-lui dessus</color></b> pour lui rappeler
+    les sujets qui int\xE9ressent les Fran\xE7ais. Attention, s'il parle trop il risque
+    de gagner des voix !"
 --- !u!222 &207767490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeechArray:
-  - text: "Je souhaite mettre en place une assembl\xE9e constituante pour une 6eme
+  - text: "Je souhaite mettre en place une assembl\xE9e constituante pour une 6\xE8me
       r\xE9publique."
     audioGroupName: 
     wallTexture: {fileID: 0}
@@ -2238,20 +2238,23 @@ MonoBehaviour:
       richesses."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: "La plannification \xE9cologique est vitale, il faut sortir du nucl\xE9aire."
+  - text: "La planification \xE9cologique est vitale, il faut sortir du nucl\xE9aire."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: "Nous devons changer les trait\xE9s europ\xE9ens qui pr\xF4ne l'aust\xE9rit\xE9."
+  - text: "Nous devons changer les trait\xE9s europ\xE9ens qui pr\xF4nent l'aust\xE9rit\xE9."
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: "Nous devons priviligi\xE9 l'ONU et sortir de l'OTAN."
+  - text: Nous devons sortir de l'OTAN.
     audioGroupName: 
     wallTexture: {fileID: 0}
   - text: "Je propose la s\xE9curit\xE9 sociale int\xE9grale !"
     audioGroupName: 
     wallTexture: {fileID: 0}
-  - text: "Je veux cr\xE9er 14 tranches d'impots, et je vais taxer les \xE9migr\xE9s
-      fiscaux. "
+  - text: "Je veux cr\xE9er 14 tranches d'imp\xF4ts et je vais taxer les \xE9migr\xE9s
+      fiscaux."
+    audioGroupName: 
+    wallTexture: {fileID: 0}
+  - text: Produire bio et local !
     audioGroupName: 
     wallTexture: {fileID: 0}
 --- !u!4 &842361962
@@ -2302,13 +2305,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSecondsDuration: 30
-  minTimeNewSpawn: 1
-  maxTimeNewSpawn: 4
-  minMolenchonsToSpawnAtTheSameTime: 1
+  minTimeNewSpawn: 0.8
+  maxTimeNewSpawn: 2.5
+  minMolenchonsToSpawnAtTheSameTime: 2
   maxMolenchonsToSpawnAtTheSameTime: 3
-  probabilityOfInvincibleMolenchon: 0.2
+  coefScoreMolenchonEndingSpeech: 5.2
+  probabilityOfInvincibleMolenchon: 0.1
   timePerCharacterMolenchonSpeech: 0.05
-  beginningPopularity: 0.5
+  beginningHiddenPopularity: 0.085
   baseStepChangingPopularity: 0.005
   popularityScript: {fileID: 286495505}
   molenchonSpeechList: {fileID: 842361961}
@@ -2492,36 +2496,36 @@ MonoBehaviour:
   commentArray:
   - includeMinPop: 0
     excludeMaxPop: 0.1
-    text: Parfait ! Les intentions de votes de Molenchon sont plus basses qu'en 2012
-      !
+    text: "\"Incroyable ! Avec un travail journalistique de cette qualit\xE9, la r\xE9publique
+      est sauve !\""
   - includeMinPop: 0.1
     excludeMaxPop: 0.2
-    text: Magnifique ! Molenchon n'a pas eu le temps de dire quoi que ce soit !
+    text: '"Magnifique ! La caste a de beaux jours devant elle !"'
   - includeMinPop: 0.2
     excludeMaxPop: 0.3
-    text: "Excellent ! Les spectateurs n'ont pas pu comprendre les id\xE9es de Molenchon
-      !"
+    text: "\"Excellent ! Les spectateurs n'ont pas pu comprendre les id\xE9es de M\xE9lenchon
+      !\""
   - includeMinPop: 0.3
     excludeMaxPop: 0.4
-    text: C'est bien ! Molenchon n'a pas pu exprimer correctement son programme !
+    text: "\"C'est bien ! M\xE9lenchon n'a pas pu exprimer correctement son programme
+      !\""
   - includeMinPop: 0.4
     excludeMaxPop: 0.5
-    text: "Pas mal ! Mais restons vigilants, une part des spectateurs adh\xE8re encore
-      aux propros de Molenchon."
+    text: "\"Pas mal ! Mais restons vigilants, une part des spectateurs adh\xE8re
+      encore aux propros de M\xE9lenchon.\""
   - includeMinPop: 0.5
     excludeMaxPop: 0.6
-    text: "Oh non ! Notre d\xE9mocratie est en danger, Molenchon a convaincu la majorit\xE9
-      des spectateurs !"
+    text: "\"Oh non ! Notre d\xE9mocratie est en danger, M\xE9lenchon a convaincu
+      la majorit\xE9 des spectateurs !\""
   - includeMinPop: 0.6
     excludeMaxPop: 0.7
-    text: "Catastrophe ! L'audience a \xE9t\xE9 convaincu par le programme de Molenchon
-      !"
+    text: '"Catastrophe ! Les cocos nous envahissent !"'
   - includeMinPop: 0.7
     excludeMaxPop: 0.85
-    text: "ALERTE ! Molenchon a ali\xE9n\xE9 la population avec son discours !"
+    text: "\"ALERTE ! On va bient\xF4t se retrouver \xE0 Cuba !\""
   - includeMinPop: 0.85
     excludeMaxPop: 1.1
-    text: "Can't stenchon the M\xE9lenchon !"
+    text: '"CAN''T STENCHON THE MELENCHON !"'
 --- !u!1 &926229208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5012,8 +5016,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1700.812, y: 133.19547}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 1721, y: 133.19547}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964925444
 MonoBehaviour:

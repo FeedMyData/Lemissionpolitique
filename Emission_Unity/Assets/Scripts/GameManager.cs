@@ -11,11 +11,12 @@ public class GameManager : MonoBehaviour {
 	public float maxTimeNewSpawn = 3.0f;
 	public int minMolenchonsToSpawnAtTheSameTime = 1;
 	public int maxMolenchonsToSpawnAtTheSameTime = 4;
+	public float coefScoreMolenchonEndingSpeech = 4.0f;
 	[Range(0.0f, 1.0f)]
 	public float probabilityOfInvincibleMolenchon = 0.5f;
 	public float timePerCharacterMolenchonSpeech = 0.05f;
 	[Range(0.0f, 1.0f)]
-	public float beginningPopularity = 0.5f;
+	public float beginningHiddenPopularity = 0.36f;
 	[Range(0.0f, 1.0f)]
 	public float baseStepChangingPopularity = 0.05f;
 	public PopularityFeedback popularityScript;
@@ -104,8 +105,9 @@ public class GameManager : MonoBehaviour {
 		totalMolenchonCrushed = 0;
 		totalMolenchonEndedSpeech = 0;
 //		totalHammerCrushes = 0;
-		currentPopularity = beginningPopularity;
-		popularityScript.AnimChangePopularity(currentPopularity);
+		currentPopularity = beginningHiddenPopularity;
+		UpdatePopularity ();
+//		popularityScript.AnimChangePopularity(currentPopularity);
 		ShowPlayingCanvas();
 	}
 
@@ -212,9 +214,9 @@ public class GameManager : MonoBehaviour {
 //	}
 
 	void UpdatePopularity() {
-		float lifeTimePercentage = baseStepChangingPopularity * (totalMolenchonEndedSpeech - totalMolenchonCrushed) + beginningPopularity;
+		float lifeTimePercentage = baseStepChangingPopularity * (totalMolenchonEndedSpeech * coefScoreMolenchonEndingSpeech - totalMolenchonCrushed) + beginningHiddenPopularity;
 		lifeTimePercentage = Mathf.Clamp01(lifeTimePercentage);
-		currentPopularity = DOVirtual.EasedValue(0, 1, lifeTimePercentage, Ease.InOutCirc);
+		currentPopularity = DOVirtual.EasedValue(0, 1, lifeTimePercentage, Ease.OutQuad);
 		popularityScript.AnimChangePopularity(currentPopularity);
 	}
 

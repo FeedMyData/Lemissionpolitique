@@ -41,7 +41,7 @@ public class PopularityFeedback : MonoBehaviour {
 	}
 
 	void UpdateBar(float pop) {
-		float barHeight = pop * (maxHeight - minHeight);
+		float barHeight = pop * (maxHeight - minHeight) + minHeight;
 		GetComponent<RectTransform>().DOSizeDelta(new Vector2(GetComponent<RectTransform>().sizeDelta.x, barHeight), 0.5f).SetEase(Ease.OutBack).Play();
 	}
 
