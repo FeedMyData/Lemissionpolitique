@@ -6,7 +6,7 @@ using DG.Tweening;
 public class HammerUser : MonoBehaviour {
 
 	public GameObject SpecificHammerToUse;
-	public Sprite profilePicture;
+//	public Sprite profilePicture;
 	public int weightProbabilityToBeTheUser = 5;
 	public SpeechList speechList;
 	private Sequence speakAnimSeq;
