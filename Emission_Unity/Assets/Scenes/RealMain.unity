@@ -2924,40 +2924,52 @@ MonoBehaviour:
   soundEffectArray:
   - groupName: HammerHit
     audioClip: {fileID: 8300000, guid: 17e2851c09ee1404db3295bb113287df, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243650971058300258, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: HammerHit
     audioClip: {fileID: 8300000, guid: b88e32241a45c264b81ccfd9776357f0, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243650971058300258, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: HammerHit
     audioClip: {fileID: 8300000, guid: db2bfa26a6e4a4747818517e0450f8bd, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243650971058300258, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: b2866116ea0133644bb66bfe009f4661, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243659537092040766, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: 9ce1e5a0665c4f14b9c83bb3dddae0c5, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243659537092040766, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: cf012f160f649584b94a0b7b08210632, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243659537092040766, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Hologram
     audioClip: {fileID: 8300000, guid: a01292a096a388a409773321ab8dcd93, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243659537092040766, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: LePen
     audioClip: {fileID: 8300000, guid: 590f5a23eff813d45a930f2f4c23a3d3, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243463935512846898, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: LePen
     audioClip: {fileID: 8300000, guid: 0d89943253d4e5e47a3b73d6bf7aef38, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243463935512846898, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Poutine
     audioClip: {fileID: 8300000, guid: d24c982e7ee7a0640ad043ff2f6cec3c, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243463935512846898, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Poutine
     audioClip: {fileID: 8300000, guid: 137dd00ba88139f4da96c97fed23ba9b, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243463935512846898, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   - groupName: Poutine
     audioClip: {fileID: 8300000, guid: 416fb7c756b47644db27604126f913ac, type: 3}
-    audioMixerGroup: {fileID: 0}
+    audioMixerGroup: {fileID: 243463935512846898, guid: 5cdf289606424d041812468a9b374a63,
+      type: 2}
   audioEffectPrefab: {fileID: 1223473917525188, guid: 81da5ae60d8dc5b4ea697674ecb2262f,
     type: 2}
   soundImageButtonWithOnSprite: {fileID: 1306441291}
@@ -2983,7 +2995,8 @@ AudioSource:
   m_GameObject: {fileID: 1169805445}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243377274785961284, guid: 5cdf289606424d041812468a9b374a63,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: bd9c8afa8a52e1f40b2bd891d04149d2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3063,7 +3076,8 @@ AudioSource:
   m_GameObject: {fileID: 1169805445}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243898497251702432, guid: 5cdf289606424d041812468a9b374a63,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 378cd901e0f1def4ea3439cc3b4e9968, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour {
 		}
 		List<SoundEffectElement> randomList = new List<SoundEffectElement>();
 		foreach(SoundEffectElement se in soundEffectArray) {
-			if(se.groupName == groupName) {
+			if(se.groupName == groupName && se.audioClip != null) {
 				randomList.Add(se);
 			}
 		}
@@ -57,15 +57,13 @@ public class SoundManager : MonoBehaviour {
 			// Should clean automatically when the sound finishes playing, maybe make a script in the prefab to check that
 			CleanAudioEffects ();
 			SoundEffectElement chosenOne = randomList[Random.Range (0, randomList.Count)];
-			if (chosenOne.audioClip != null) {
-				GameObject audioEffect = SimplePool.Spawn (audioEffectPrefab);
-				audioEffect.transform.position = transform.position;
-				AudioSource audioSourceComponent = audioEffect.GetComponent<AudioSource> ();
-				audioSourcePlayedList.Add (audioSourceComponent);
-				audioSourceComponent.clip = chosenOne.audioClip;
-				audioSourceComponent.outputAudioMixerGroup = chosenOne.audioMixerGroup;
-				audioSourceComponent.Play ();
-			}
+			GameObject audioEffect = SimplePool.Spawn (audioEffectPrefab);
+			audioEffect.transform.position = transform.position;
+			AudioSource audioSourceComponent = audioEffect.GetComponent<AudioSource> ();
+			audioSourcePlayedList.Add (audioSourceComponent);
+			audioSourceComponent.clip = chosenOne.audioClip;
+			audioSourceComponent.outputAudioMixerGroup = chosenOne.audioMixerGroup;
+			audioSourceComponent.Play ();
 //			AudioSource.PlayClipAtPoint(randomList[Random.Range(0, randomList.Count)], transform.position, volume);
 		} else {
 			Debug.LogWarningFormat("No sound effect found to play with group name: {0}", groupName);
@@ -82,7 +80,7 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	public void PlayAudioSource(string clipName, float volume = 0.4f) {
+	public void PlayAudioSource(string clipName, float volume = 1.0f) {
 		AudioSource aSource;
 		if(audioSourceDic.TryGetValue(clipName, out aSource)) {
 			aSource.volume = volume;
