@@ -448,7 +448,6 @@ RectTransform:
   m_Children:
   - {fileID: 889931301}
   - {fileID: 418956677}
-  - {fileID: 1223589415}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -576,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1233dd3d8195f4996e9cbc86766956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHammerToUse: {fileID: 100000, guid: e2c8ccebeb3a0f443bff10ecf2a6dc78, type: 3}
+  baseHammerToUse: {fileID: 1492078650}
   usersContainer: {fileID: 1889618825}
   userBubblesContainer: {fileID: 418956677}
   prefabUserSpeechBubble: {fileID: 1489831398296624, guid: 43620d0b2eccbd84098b20fa8093867e,
@@ -596,7 +595,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 210759845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.829, y: 2.86, z: -0.82}
+  m_LocalPosition: {x: -4.829, y: 3.3, z: -0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1572447945}
@@ -857,8 +856,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.7728481, z: 1.0043161}
+  m_Center: {x: 0, y: 0.113575935, z: -0.08996394}
 --- !u!4 &290625451
 Transform:
   m_ObjectHideFlags: 0
@@ -866,7 +865,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 290625447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.66, z: 0}
+  m_LocalPosition: {x: 0.01, y: 2.19, z: 0}
   m_LocalScale: {x: 7, y: 1, z: 7}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2929,11 +2928,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3cd9119900ec6fb44a002e719199e6c8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bd9c8afa8a52e1f40b2bd891d04149d2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3080,53 +3079,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1001 &1223589414
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 162061191}
-    m_Modifications:
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3e41b060cde6bab4c8fdfa929a84423e, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &1223589415 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4561980666575498, guid: 3e41b060cde6bab4c8fdfa929a84423e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1223589414}
 --- !u!1 &1306441288
 GameObject:
   m_ObjectHideFlags: 0

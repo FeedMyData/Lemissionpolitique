@@ -63,8 +63,10 @@ public class Hammer : MonoBehaviour {
 		AssignSpecificUser();
 		DisplaySpecificHammer();
 		AnimateSpecificUser();
-		pos += inputPositionOffset;
-		transform.DOMove(pos, timeToGoToPosition).OnComplete(()=>DoCrush()).Play();
+//		pos += inputPositionOffset;
+		pos = new Vector3(pos.x, hammerRestPosition.y, pos.z) + inputPositionOffset;
+		transform.DOJump(pos, 1.0f, 1, timeToGoToPosition).OnComplete(()=>DoCrush()).Play();
+//		transform.DOMove(pos, timeToGoToPosition).OnComplete(()=>DoCrush()).Play();
 	}
 
 	void BackToRest() {

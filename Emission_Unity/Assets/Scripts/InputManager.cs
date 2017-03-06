@@ -40,7 +40,11 @@ public class InputManager : MonoBehaviour {
 		Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow, 5);
 		RaycastHit[] hits = Physics.RaycastAll(ray);
 		foreach(RaycastHit hitResult in hits) {
-			if (gm.HammerInteractionZone != null && hitResult.transform.gameObject == gm.HammerInteractionZone) {
+			if(hitResult.transform.GetComponent<SpawnElement>() != null) {
+				Debug.DrawRay(hitResult.point, Vector3.up * 2, Color.green, 5);
+				hammer.ReceiveInputAction(hitResult.transform.position);
+				break;
+			} else if (gm.HammerInteractionZone != null && hitResult.transform.gameObject == gm.HammerInteractionZone) {
 				Debug.DrawRay(hitResult.point, Vector3.up * 2, Color.red, 5);
 				hammer.ReceiveInputAction(hitResult.point);
 				break;

@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void LaunchPlayingRoutine() {
-		sm.PlayAudioSource("game");
+		sm.PlayAudioSource("game_loop");
 		playingCoroutine = StartCoroutine(PlayingRoutine());
 	}
 
@@ -154,8 +154,7 @@ public class GameManager : MonoBehaviour {
 			StopCoroutine(playingCoroutine);
 		}
 		HidePlayingCanvas();
-		sm.StopAndFadeOutAudioSource("game", 0.0f, 1.0f);
-
+		sm.StopAndFadeOutAudioSource("game_loop", 0.0f, 1.0f);
 	}
 
 	void ClearCurrentGameRunning() {

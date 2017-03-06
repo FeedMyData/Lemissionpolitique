@@ -130,8 +130,8 @@ public class SpawnElement : MonoBehaviour {
 		Sequence holoBubSeq = DOTween.Sequence();
 		hologramBubble.GetComponent<CanvasGroup>().alpha = 1;
 		hologramBubble.gameObject.SetActive(true);
-		holoBubSeq.AppendInterval(0.5f);
-		holoBubSeq.Append(hologramBubble.GetComponent<CanvasGroup>().DOFade(0, 1.0f));
+		holoBubSeq.AppendInterval(1.0f);
+		holoBubSeq.Append(hologramBubble.GetComponent<CanvasGroup>().DOFade(0, 0.5f));
 		holoBubSeq.AppendCallback(()=>hologramBubble.gameObject.SetActive(false));
 		holoBubSeq.Play();
 
