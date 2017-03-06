@@ -22,6 +22,5 @@ Le but est de susciter l’échange en dehors des canaux traditionnels.
 Cette jam commence au lancement de notre jeu et se finit le 23 avril 2017 (premier tour des élections).
 
 # DIVERS
-Le jeu a été réalisé en une semaine par une équipe de 2 personnes (@FeedMyData et @aurelien974).
+Le jeu a été réalisé en une semaine par une équipe de 2 personnes (sur GitHub : @FeedMyData et @aurelien974).
 Il est sous licence libre CC0.
-
