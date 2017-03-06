@@ -34,3 +34,6 @@ ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
 *.csproj
+Emission_Unity/Assembly-CSharp.csproj
+Emission_Unity/Library/shadercompiler-UnityShaderCompiler.exe0.log
+Emission_Unity/Emission_Unity.userprefs
