@@ -537,9 +537,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Aidez les journalistes \xE0 sauver le d\xE9bat d\xE9mocratique. L'horrible
     M\xE9lenchon est l'invit\xE9 de votre plateau et il a l'intention de parler de
-    son programme. \n\n<b><color=red>Tapez-lui dessus</color></b> pour lui rappeler
-    les sujets qui int\xE9ressent les Fran\xE7ais. Attention, s'il parle trop il risque
-    de gagner des voix !"
+    son programme. \n\n<color=red>Tapez-lui dessus</color> pour lui rappeler les sujets
+    qui int\xE9ressent les Fran\xE7ais. Attention, s'il parle trop il risque de gagner
+    des voix !"
 --- !u!222 &207767490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   baseHammerToUse: {fileID: 1492078650}
   usersContainer: {fileID: 1889618825}
   userBubblesContainer: {fileID: 418956677}
-  prefabUserSpeechBubble: {fileID: 1489831398296624, guid: 43620d0b2eccbd84098b20fa8093867e,
+  prefabUserSpeechBubble: {fileID: 1164591540883696, guid: 342ea511286db6347b180af075c42993,
     type: 2}
   hammerContainer: {fileID: 1572447945}
   timeToGoToPosition: 0.1
@@ -1493,7 +1493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpecificHammerToUse: {fileID: 286422559}
-  profilePicture: {fileID: 21300000, guid: 1be85d144b2017e4d8ab94bffe7c33bf, type: 3}
   weightProbabilityToBeTheUser: 10
   speechList: {fileID: 451935681}
 --- !u!114 &451935681
@@ -1984,7 +1983,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpecificHammerToUse: {fileID: 1492078650}
-  profilePicture: {fileID: 21300000, guid: b7086e9f6bab7364782d4b1d9fb3b29a, type: 3}
   weightProbabilityToBeTheUser: 5
   speechList: {fileID: 723637590}
 --- !u!114 &723637590
@@ -3681,7 +3679,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpecificHammerToUse: {fileID: 1492078650}
-  profilePicture: {fileID: 21300000, guid: aa1271fb12ec36a47b3e0ecdadaf05a2, type: 3}
   weightProbabilityToBeTheUser: 5
   speechList: {fileID: 1328366358}
 --- !u!114 &1328366358
@@ -5523,7 +5520,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpecificHammerToUse: {fileID: 1492078650}
-  profilePicture: {fileID: 21300000, guid: 4592b098df696bc4b8cfa4382ffaebd0, type: 3}
   weightProbabilityToBeTheUser: 5
   speechList: {fileID: 2118367823}
 --- !u!114 &2118367823
