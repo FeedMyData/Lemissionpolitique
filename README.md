@@ -7,7 +7,7 @@ Pour cela, frappez-le en cliquant dessus pour l'interrompre quand il parle. Plus
 
 Comment y jouer ?
 - Sur le site web du jeu : (en cours)
-- En le téléchargeant sur itch.io : (en cours)
+- En le téléchargeant : (en cours)
 
 # JAM POLITIQUE 2017
 
