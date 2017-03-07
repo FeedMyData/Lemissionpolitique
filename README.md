@@ -19,7 +19,7 @@ Le but est de susciter l’échange en dehors des canaux traditionnels.
 
 **Partagez vos créations sur les réseaux sociaux avec le hashtag #JAMPOLITIQUE2017.**
 
-Cette jam commence au lancement de notre jeu et se finit le 23 avril 2017 (premier tour des élections).
+Cette jam se finit le 23 avril 2017 (premier tour des élections).
 
 # DIVERS
 Le jeu a été réalisé en une semaine par une équipe de 2 personnes (sur GitHub : @FeedMyData et @aurelien974).
