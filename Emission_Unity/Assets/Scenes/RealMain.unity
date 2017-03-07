@@ -2307,7 +2307,7 @@ MonoBehaviour:
   maxTimeNewSpawn: 2.5
   minMolenchonsToSpawnAtTheSameTime: 2
   maxMolenchonsToSpawnAtTheSameTime: 3
-  coefScoreMolenchonEndingSpeech: 4.3
+  coefScoreMolenchonEndingSpeech: 4
   probabilityOfInvincibleMolenchon: 0.1
   timePerCharacterMolenchonSpeech: 0.05
   beginningHiddenPopularity: 0.08
