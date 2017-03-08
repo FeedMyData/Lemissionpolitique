@@ -2,8 +2,7 @@
 
 **L'Emission Pourritique** est un jeu vidéo qui parodie [*L'Emission politique*](https://www.youtube.com/watch?v=Rbo6bGtOxjE) de France 2 ayant eu pour invité de Jean-Luc Mélenchon, candidat à l'élection présidentielle de 2017 et représentant du mouvement la France insoumise.
 
-En tant que joueur, vous incarnez les journalistes de l'émission et vous devez empêcher Jean-Luc Mélenchon de parler de son programme.
-Pour cela, frappez-le en cliquant dessus pour l'interrompre quand il parle. Plus vous l'empêchez de parler et plus ses intentions de vote diminuent.
+En tant que joueur, vous incarnez les journalistes de l'émission et vous devez empêcher Jean-Luc Mélenchon de parler de son programme. Pour cela, vous devez le frapper en lui cliquant dessus pour l'interrompre quand il parle. Plus vous l'empêchez de parler et plus ses intentions de vote diminuent.
 
 Site pour y jouer ou le télécharger : www.emissionpourritique.info
 
