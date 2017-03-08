@@ -5,9 +5,7 @@
 En tant que joueur, vous incarnez les journalistes de l'émission et vous devez empêcher Jean-Luc Mélenchon de parler de son programme.
 Pour cela, frappez-le en cliquant dessus pour l'interrompre quand il parle. Plus vous l'empêchez de parler et plus ses intentions de vote diminuent.
 
-Comment y jouer ?
-- Sur le site web du jeu : (en cours)
-- En le téléchargeant : (en cours)
+Site pour y jouer ou le télécharger : www.emissionpourritique.info
 
 # JAM POLITIQUE 2017
 
