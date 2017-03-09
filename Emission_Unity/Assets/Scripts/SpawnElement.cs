@@ -48,6 +48,7 @@ public class SpawnElement : MonoBehaviour {
 //	}
 
 	public void InitMolenchon() { // Should instead extend SpawnElement and have specific methods for each kind of element
+		gameObject.SetActive(true);
 		transform.localPosition = Vector3.zero;
 		if(gm.probabilityOfInvincibleMolenchon == 0.0f) {
 			isInvincible = false;

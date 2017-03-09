@@ -38,8 +38,9 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	// Use this for initialization
-//	void Start () {
-//	}
+	void Start () {
+		SimplePool.Preload(audioEffectPrefab, 6);
+	}
 
 	// Replacing method AudioSource.PlayClipAtPoint with prefab to use Audio Mixer
 	// Not using worldPosition parameter right now, positien is soundManager for the moment

@@ -41,9 +41,9 @@ public class Hammer : MonoBehaviour {
 	}
 
 	// Use this for initialization
-//	void Start () {
-//		
-//	}
+	void Start () {
+		SimplePool.Preload(prefabUserSpeechBubble, 5);
+	}
 	
 	// Update is called once per frame
 //	void Update () {

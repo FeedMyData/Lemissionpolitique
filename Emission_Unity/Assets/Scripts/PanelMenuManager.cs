@@ -6,12 +6,16 @@ using DG.Tweening;
 public class PanelMenuManager : MonoBehaviour {
 
 	public MenuPanel playPanel;
+	public MenuPanel tutoPanel;
 	public MenuPanel infoPanel;
 	public MenuPanel scorePanel;
 	public UnityEngine.UI.Image startingForeground;
 
-	private bool IsStartMenu = false;
-	private bool IsActionToPlay = false;
+//	private bool IsStartMenu = false;
+//	private bool IsActionToPlay = false;
+
+	private string menuState = "start_menu";
+	private string actionState = "";
 
 	private GameManager gm;
 
@@ -35,41 +39,68 @@ public class PanelMenuManager : MonoBehaviour {
 
 	void DelayedStart() {
 		gm.sm.PlayAudioSource("Intro 1");
-		IsStartMenu = true;
+//		IsStartMenu = true;
+		menuState = "start_menu";
 		playPanel.ActivatePanel();
 	}
 
 	public void ShowEndGamePanels() {
-		IsStartMenu = false;
+//		IsStartMenu = false;
+		menuState = "end_menu";
 		if(scorePanel.GetComponent<ScoreInfo>() != null) {
 			scorePanel.GetComponent<ScoreInfo>().UpdatePanelScoreText();
 		}
 		scorePanel.ActivatePanel();
 	}
 
-	public void CheckBinaryMenu() {
-		if(IsStartMenu) {
+	public void CheckMenu() {
+		switch(menuState) {
+		case "start_menu":
 			playPanel.ActivatePanel();
-		} else {
+			break;
+		case "end_menu":
 			scorePanel.ActivatePanel();
+			break;
 		}
+//		if(IsStartMenu) {
+//			playPanel.ActivatePanel();
+//		} else {
+//			scorePanel.ActivatePanel();
+//		}
 	}
 
 	public void SetActionToPlay() {
-		IsActionToPlay = true;
+//		IsActionToPlay = true;
+		actionState = "Play";
 		gm.sm.StopAndFadeOutAudioSource("Intro 1", 0.0f, 1.0f);
 	}
 
 	public void SetActionToInfo() {
-		IsActionToPlay = false;
+//		IsActionToPlay = false;
+		actionState = "Info";
 	}
 
-	public void CheckBinaryAction() {
-		if(IsActionToPlay) {
+	public void SetActionToTutorial() {
+		actionState = "Tuto";
+	}
+
+	public void CheckAction() {
+		switch(actionState) {
+		case "Play":
 			gm.StartNewGame();
-		} else {
+			break;
+		case "Info":
 			infoPanel.ActivatePanel();
+			break;
+		case "Tuto":
+			tutoPanel.ActivatePanel();
+			break;
 		}
+//		if(IsActionToPlay) {
+//			gm.StartNewGame();
+//		} else {
+//			infoPanel.ActivatePanel();
+//		}
 	}
 
 }
