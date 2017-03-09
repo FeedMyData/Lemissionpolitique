@@ -68,7 +68,7 @@ public class MenuPanel : MonoBehaviour {
 		if(!ActivatingSequence.IsPlaying() && GetComponent<RectTransform>().localScale != ActivatedScale) {
 			panelOn = true;
 			if(DeactivatingSequence.IsPlaying()) {
-				DeactivatingSequence.PlayBackwards();
+//				DeactivatingSequence.PlayBackwards(); // Can create bugs with StartIntroEvents...
 			} else {
 				ActivatingSequence.Restart();
 			}
@@ -79,7 +79,7 @@ public class MenuPanel : MonoBehaviour {
 		if(!DeactivatingSequence.IsPlaying() && GetComponent<RectTransform>().localScale != DeactivatedScale) {
 			panelOn = false;
 			if(ActivatingSequence.IsPlaying()) {
-				ActivatingSequence.PlayBackwards();
+//				ActivatingSequence.PlayBackwards(); // Can Create bugs with StartIntroEvents...
 			} else {
 				DeactivatingSequence.Restart();
 			}
